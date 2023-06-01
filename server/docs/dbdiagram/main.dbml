@@ -1,0 +1,65 @@
+// Docs: https://dbml.dbdiagram.io/docs
+
+// Parking data
+Table buildings {
+  id integer [primary key]
+  name text unique
+}
+
+Table owners {
+  id integer [primary key]
+  first_name text
+  last_name text
+  ci text unique
+  phone text
+  building_id integer
+  floor integer
+  apto text
+}
+
+Table parking_slots {
+  id integer [primary key]
+  code text unique
+  floor integer
+  owner_id integer
+  qr_code uuid unique
+}
+
+Table vehicles {
+  id integer [primary key]
+  model text
+  plate text unique
+  color text
+  parking_slot_id integer
+  owner_id integer
+}
+
+// -- System data
+Table roles {
+  id integer [primary key]
+  name text
+  code text
+}
+
+
+Table users {
+  id integer [primary key]
+  first_name text
+  last_name text
+  ci text unique
+  phone text
+  role_id integer
+  password text
+  created_at timestamp
+  updated_at timestamp
+}
+
+// Refs
+Ref: "parking_slots"."owner_id" < "owners"."id"
+  
+Ref: "vehicles"."parking_slot_id" < "parking_slots"."id"
+Ref: "vehicles"."owner_id" < "owners"."id"
+
+Ref: "owners"."building_id" < "buildings"."id"
+
+Ref: "users"."role_id" < "roles"."id"

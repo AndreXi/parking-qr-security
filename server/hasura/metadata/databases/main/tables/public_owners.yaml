@@ -1,0 +1,22 @@
+table:
+  name: owners
+  schema: public
+object_relationships:
+  - name: building
+    using:
+      foreign_key_constraint_on: building_id
+array_relationships:
+  - name: parking_slots
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          name: parking_slots
+          schema: public
+  - name: vehicles
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          name: vehicles
+          schema: public
