@@ -1,0 +1,2 @@
+CREATE TABLE "public"."parking_slots" ("id" serial NOT NULL, "code" text NOT NULL, "floor" integer NOT NULL, "owner_id" uuid NOT NULL, "qr_code" uuid NOT NULL DEFAULT gen_random_uuid(), PRIMARY KEY ("id") , FOREIGN KEY ("owner_id") REFERENCES "public"."owners"("id") ON UPDATE restrict ON DELETE cascade, UNIQUE ("code"), UNIQUE ("qr_code"));COMMENT ON TABLE "public"."parking_slots" IS E'Parking Slots data';
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

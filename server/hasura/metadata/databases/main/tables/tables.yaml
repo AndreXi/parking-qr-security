@@ -1,2 +1,6 @@
+- "!include public_buildings.yaml"
+- "!include public_owners.yaml"
+- "!include public_parking_slots.yaml"
+- "!include public_vehicles.yaml"
 - "!include system_roles.yaml"
 - "!include system_users.yaml"

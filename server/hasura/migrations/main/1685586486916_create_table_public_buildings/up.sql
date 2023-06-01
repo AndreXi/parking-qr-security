@@ -1,0 +1,1 @@
+CREATE TABLE "public"."buildings" ("id" serial NOT NULL, "name" text NOT NULL, PRIMARY KEY ("id") , UNIQUE ("name"));COMMENT ON TABLE "public"."buildings" IS E'Buildings in the same residential complex';
