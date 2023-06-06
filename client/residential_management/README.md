@@ -1,8 +1,7 @@
-# Security Guard Reader
+# Residential Management
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![License: MIT][license_badge]][license_link]
 
 The app for security guards to read QR codes and search info
 
@@ -29,7 +28,7 @@ $ flutter run --flavor staging --target lib/main_staging.dart
 $ flutter run --flavor production --target lib/main_production.dart
 ```
 
-_\*Security Guard Reader works on iOS, Android, Web, Linux and Windows._
+_\*Residential Management works on iOS, Android, Web, Linux and Windows._
 
 ---
 
@@ -140,8 +139,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
         "description": "Text shown in the AppBar of the Counter Page"
     }
 }
-```com.andrexi.residential_management
-   com.andrexi.residential-management
+```
 
 `app_es.arb`
 
@@ -164,7 +162,5 @@ $ dart run flutter_launcher_icons
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
 [internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
-[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[license_link]: https://opensource.org/licenses/MIT
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis

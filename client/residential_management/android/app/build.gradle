@@ -83,17 +83,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Security Guard Reader"]
+            manifestPlaceholders = [appName: "Residential Management"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Security Guard Reader"]
+            manifestPlaceholders = [appName: "[STG] Residential Management"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Security Guard Reader"]
+            manifestPlaceholders = [appName: "[DEV] Residential Management"]
         }
     }
 

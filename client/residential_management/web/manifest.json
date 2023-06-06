@@ -1,6 +1,6 @@
 {
-    "name": "Security Guard Reader",
-    "short_name": "Security Guard Reader",
+    "name": "Residential Management",
+    "short_name": "Residential Management",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",
