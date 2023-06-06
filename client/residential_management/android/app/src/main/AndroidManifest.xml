@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrexi.security-guard-reader">
+    package="com.andrexi.residential_management">
    <application
         android:label="${appName}"
         android:name="${applicationName}"

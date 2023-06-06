@@ -92,7 +92,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 3. Use the new string
 
 ```dart
-import 'package:security_guard_reader/l10n/l10n.dart';
+import 'package:residential_management/l10n/l10n.dart';
 
 @override
 Widget build(BuildContext context) {
@@ -140,8 +140,8 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
         "description": "Text shown in the AppBar of the Counter Page"
     }
 }
-```com.andrexi.security_guard_reader
-   com.andrexi.security-guard-reader
+```com.andrexi.residential_management
+   com.andrexi.residential-management
 
 `app_es.arb`
 

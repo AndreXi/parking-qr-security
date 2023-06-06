@@ -1,4 +1,4 @@
-package com.andrexi.security-guard-reader
+package com.andrexi.residential_management
 
 import io.flutter.embedding.android.FlutterActivity
 

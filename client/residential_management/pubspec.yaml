@@ -1,4 +1,4 @@
-name: security_guard_reader
+name: residential_management
 description: The app for security guards to read QR codes and search info
 version: 1.0.0+1
 publish_to: none
