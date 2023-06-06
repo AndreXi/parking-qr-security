@@ -1,49 +1,73 @@
+// Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
 
 // Parking data
 Table buildings {
-  id integer [primary key]
+  id integer [pk]
   name text unique
+  created_at timestamp
+  updated_at timestamp
 }
 
 Table owners {
-  id integer [primary key]
+  id uuid [pk]
   first_name text
   last_name text
   ci text unique
   phone text
+  phone_1 text [null]
+  email text [null]
   building_id integer
   floor integer
   apto text
+  created_at timestamp
+  updated_at timestamp
 }
 
 Table parking_slots {
-  id integer [primary key]
+  id integer [pk]
   code text unique
   floor integer
-  owner_id integer
+  owner_id uuid [null]
+  renter_id uuid [null]
   qr_code uuid unique
+  created_at timestamp
+  updated_at timestamp
 }
 
 Table vehicles {
-  id integer [primary key]
+  id integer [pk]
+  brand text
   model text
   plate text unique
   color text
   parking_slot_id integer
-  owner_id integer
+  owner_id uuid
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table stores {
+  id integer [pk]
+  code text unique
+  location text [null]
+  owner_id uuid [null]
+  renter_id uuid [null]
+  qr_code uuid unique
+  created_at timestamp
+  updated_at timestamp
 }
 
 // -- System data
 Table roles {
-  id integer [primary key]
+  id integer [pk]
   name text
   code text
 }
 
 
 Table users {
-  id integer [primary key]
+  id uuid [pk]
   first_name text
   last_name text
   ci text unique
@@ -63,3 +87,10 @@ Ref: "vehicles"."owner_id" < "owners"."id"
 Ref: "owners"."building_id" < "buildings"."id"
 
 Ref: "users"."role_id" < "roles"."id"
+
+
+Ref: "stores"."owner_id" < "owners"."id"
+
+Ref: "stores"."renter_id" < "owners"."id"
+
+Ref: "parking_slots"."renter_id" < "owners"."id"

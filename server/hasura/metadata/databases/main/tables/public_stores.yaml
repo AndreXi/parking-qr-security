@@ -1,0 +1,3 @@
+table:
+  name: stores
+  schema: public
