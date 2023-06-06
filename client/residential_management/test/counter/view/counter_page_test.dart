@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'package:security_guard_reader/counter/counter.dart';
+import 'package:residential_management/counter/counter.dart';
 
 import '../../helpers/helpers.dart';
 

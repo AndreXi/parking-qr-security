@@ -17,6 +17,7 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.2
+  change_app_package_name:
   flutter_launcher_icons: "^0.13.1"
   flutter_test:
     sdk: flutter
