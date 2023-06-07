@@ -16,3 +16,11 @@ hasura deploy
 hasura seed apply
 hasura console
 ```
+
+### Get the schema
+
+To get the schema run:
+
+```bash
+get-graphql-schema http://localhost:8080/v1/graphql > schema.graphql
+```
