@@ -13,6 +13,27 @@ array_relationships:
         table:
           name: parking_slots
           schema: public
+  - name: rented_parking_slots
+    using:
+      foreign_key_constraint_on:
+        column: renter_id
+        table:
+          name: parking_slots
+          schema: public
+  - name: rented_stores
+    using:
+      foreign_key_constraint_on:
+        column: renter_id
+        table:
+          name: stores
+          schema: public
+  - name: stores
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          name: stores
+          schema: public
   - name: vehicles
     using:
       foreign_key_constraint_on:
