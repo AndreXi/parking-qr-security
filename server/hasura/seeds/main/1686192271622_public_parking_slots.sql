@@ -1,0 +1,7 @@
+SET check_function_bodies = false;
+INSERT INTO public.parking_slots (id, code, floor, owner_id, qr_code, renter_id, created_at, updated_at) VALUES (2, 'A24', 1, '46178b88-1c02-41ec-b583-f5e8bc75d7d5', '31d736cd-5d56-49c7-b6ef-802a65de154b', NULL, '2023-06-06 22:59:58.694543+00', '2023-06-06 23:00:01.543764+00');
+INSERT INTO public.parking_slots (id, code, floor, owner_id, qr_code, renter_id, created_at, updated_at) VALUES (3, 'A25', 1, 'c71eb343-2a0f-4a3d-bddf-1a97b3b14f16', 'b14769de-c534-4422-9c26-61b60484b645', NULL, '2023-06-06 22:59:58.694543+00', '2023-06-06 23:00:01.543764+00');
+INSERT INTO public.parking_slots (id, code, floor, owner_id, qr_code, renter_id, created_at, updated_at) VALUES (4, 'C04', 2, 'b2cb252d-dbe2-48dc-8ca6-5e776fa6f9df', '8f23f216-5491-4636-8e84-51abf3de4dec', NULL, '2023-06-06 22:59:58.694543+00', '2023-06-06 23:00:01.543764+00');
+INSERT INTO public.parking_slots (id, code, floor, owner_id, qr_code, renter_id, created_at, updated_at) VALUES (5, 'C05', 2, '6fe58c05-ed8d-4c24-bf01-79857d744898', '7d88ec2f-4433-436c-a77e-23f9ee0ac2b1', NULL, '2023-06-06 22:59:58.694543+00', '2023-06-06 23:00:01.543764+00');
+INSERT INTO public.parking_slots (id, code, floor, owner_id, qr_code, renter_id, created_at, updated_at) VALUES (1, 'A23', 1, '46178b88-1c02-41ec-b583-f5e8bc75d7d5', '520e8072-036e-4181-82a9-d1f7a8f7e7d8', 'd77fa70b-4c0c-4fbc-a9c9-5235fb749936', '2023-06-06 22:59:58.694543+00', '2023-06-07 23:21:13.31115+00');
+SELECT pg_catalog.setval('public.parking_slots_id_seq', 6, true);
