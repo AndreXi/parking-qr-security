@@ -1,9 +1,11 @@
 # DB Diagram and Design
 
-Using **dbdiagram** and **BDML** in `./dbdiagram/main.bdml`
+Using **dbdiagram** and **BDML** in `./docs/dbdiagram/main.bdml`
 https://dbdiagram.io/d/6476c7767764f72fcf24e65b
 
-# Deploy Hasura
+---
+
+### Deploy Hasura
 
 1. Start the container
 2. Apply metadata and migrations
@@ -16,6 +18,20 @@ hasura deploy
 hasura seed apply
 hasura console
 ```
+
+---
+
+### Get the seeds
+
+To make seeds from all tables run the command:
+
+```bash
+python3 seedgen.py
+```
+
+TODO: Add to seedgen.py the option to create a seed for one o some tables.
+
+---
 
 ### Get the schema
 
