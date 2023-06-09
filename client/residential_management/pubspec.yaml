@@ -8,7 +8,8 @@ environment:
 
 scripts:
   codegen: dart run build_runner build
-  codegen_dev: dart run build_runner watch
+  codegen-dev: dart run build_runner watch
+  get-schema: get-graphql-schema http://localhost:8080/v1/graphql > lib/graphql/schema.graphql 
 
 dependencies:
   auto_route: ^7.4.0

@@ -10,18 +10,21 @@ The app for residential complex admin to manage parking_slots and stores (storag
 ## Getting Started 🚀
 
 1. Install "derry" package to use scripts in the `pubspec.yaml` file.
+
 ```sh
 dart pub global activate derry
 ```
+
 or run the commands without the script manager mannualy replacing "derry" for the command.
 
 2. Generate the code for GraphQL queries, router...
+
 ```sh
 derry codegen
 
 # OR if you want the build_runner to watch file changes
 
-derry codegen_dev
+derry codegen-dev
 ```
 
 This project contains 3 flavors:
@@ -65,7 +68,7 @@ $ genhtml coverage/lcov.info -o coverage/
 $ open coverage/index.html
 ```
 
-TODO: Automatize coverage badge 
+TODO: Automatize coverage badge
 
 ---
 
@@ -169,10 +172,29 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 ```
 
 ### Update icons
+
 You can change app icon configuration for each flavor in the files `flutter_launcher_icons-<flavor>` and then run:
+
 ```sh
 $ dart run flutter_launcher_icons
 ```
+
+---
+
+### Update the Graphql Schema
+If you change the schema in Hasura is required to update the `lib/graphql/schema.graphql` file
+
+1. Install [get-graphql-schema](https://www.npmjs.com/package/get-graphql-schema) from npm.
+```sh
+npm install -g get-graphql-schema
+```
+
+2. Get the schema (the Hasura server needs to be online)
+```sh
+derry get-schema
+```
+
+---
 
 [coverage_badge]: coverage_badge.svg
 [flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html

@@ -4,11 +4,11 @@ targets:
       ferry_generator|graphql_builder:
         enabled: true
         options:
-          schema: residential_management|lib/schema.graphql
+          schema: residential_management|lib/graphql/schema.graphql
       ferry_generator|serializer_builder:
         enabled: true
         options:
-          schema: residential_management|lib/schema.graphql
+          schema: residential_management|lib/graphql/schema.graphql
       
       auto_route_generator:auto_route_generator: # this for @RoutePage
         options:
