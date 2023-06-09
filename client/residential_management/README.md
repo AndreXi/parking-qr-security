@@ -3,7 +3,7 @@
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 
-The app for security guards to read QR codes and search info
+The app for residential complex admin to manage parking_slots and stores (storages).
 
 ---
 
