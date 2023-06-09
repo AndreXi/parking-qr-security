@@ -6,6 +6,10 @@ publish_to: none
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
+scripts:
+  codegen: dart run build_runner build
+  codegen_dev: dart run build_runner watch
+
 dependencies:
   auto_route: ^7.4.0
   bloc: ^8.1.2
