@@ -1,8 +1,12 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:residential_management/counter/__generated__/users.req.gql.dart';
 import 'package:residential_management/counter/counter.dart';
+import 'package:residential_management/graphql/graphql_client.dart';
 import 'package:residential_management/l10n/l10n.dart';
 
+@RoutePage()
 class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
 
@@ -21,6 +25,15 @@ class CounterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
+
+    final userR = GUsersReq();
+
+    initGraphqlClient().then(
+      (client) => client.request(userR).listen((event) {
+        debugPrint(event.data?.owners.first.first_name);
+      }),
+    );
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.counterAppBarTitle)),
       body: const Center(child: CounterText()),

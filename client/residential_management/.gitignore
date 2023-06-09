@@ -125,5 +125,8 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 
+# Ferry GraphQL generated folders
+__generated__
+
 # Ignore Folder
 _folder
