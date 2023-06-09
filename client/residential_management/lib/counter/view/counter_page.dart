@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:residential_management/counter/__generated__/users.req.gql.dart';
@@ -5,6 +6,7 @@ import 'package:residential_management/counter/counter.dart';
 import 'package:residential_management/graphql/graphql_client.dart';
 import 'package:residential_management/l10n/l10n.dart';
 
+@RoutePage()
 class CounterPage extends StatelessWidget {
   const CounterPage({super.key});
 
