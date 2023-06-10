@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:residential_management/l10n/l10n.dart';
 
 @RoutePage()
 class OwnersPage extends StatelessWidget {
@@ -7,6 +8,12 @@ class OwnersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    final l10n = context.l10n;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.ownersAppBarTitle),
+      ),
+    );
   }
 }
