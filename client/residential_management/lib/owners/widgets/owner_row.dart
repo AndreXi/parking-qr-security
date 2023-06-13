@@ -88,10 +88,14 @@ class OwnerName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      nameFormatter(firstName, lastName),
-      style: const TextStyle(
-        fontWeight: FontWeight.w600,
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, top: 8),
+      child: Text(
+        nameFormatter(firstName, lastName),
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -104,10 +108,15 @@ class OwnerCI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      ci,
-      style: const TextStyle(
-          fontStyle: FontStyle.italic, color: Color.fromRGBO(0, 0, 0, 0.6)),
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, top: 2),
+      child: Text(
+        ci,
+        style: const TextStyle(
+          fontSize: 8,
+          color: Color.fromRGBO(0, 0, 0, 0.6),
+        ),
+      ),
     );
   }
 }

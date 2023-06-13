@@ -42,7 +42,7 @@ class OwnersTable extends StatelessWidget {
 
         final owners = response?.data?.owners;
 
-        return Center(child: OwnerRow(owner: owners![0]));
+        return Center(child: OwnerRow(owner: owners!.last));
       },
     );
   }

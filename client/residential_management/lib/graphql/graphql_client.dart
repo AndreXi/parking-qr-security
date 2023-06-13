@@ -8,6 +8,7 @@ Future<Client> initGraphqlClient() async {
   await Hive.initFlutter();
 
   final box = await Hive.openBox<dynamic>('graphql');
+  print(box.toMap());
 
   final store = HiveStore(box);
 
@@ -19,6 +20,9 @@ Future<Client> initGraphqlClient() async {
   final client = Client(
     link: link,
     cache: cache,
+    defaultFetchPolicies: {
+      OperationType.query: FetchPolicy.CacheAndNetwork,
+    },
   );
 
   return client;
