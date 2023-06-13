@@ -16,6 +16,7 @@ class App extends StatelessWidget {
           primarySwatch: Colors.grey,
           accentColor: const Color(0xFF13B9FF),
         ),
+        fontFamily: 'Inter',
         useMaterial3: true,
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
