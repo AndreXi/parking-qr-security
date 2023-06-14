@@ -12,21 +12,8 @@ class OwnerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 280,
-      height: 136,
-      // clipBehavior: Clip.hardEdge,
-      // decoration: BoxDecoration(
-      //   color: const Color.fromRGBO(248, 248, 248, 1),
-      //   borderRadius: BorderRadius.circular(8),
-      //   boxShadow: const [
-      //     BoxShadow(
-      //       offset: Offset(0, 1),
-      //       blurRadius: 1,
-      //       color: Color.fromRGBO(0, 0, 0, 0.25),
-      //     ),
-      //   ],
-      // ),
       child: Card(
         clipBehavior: Clip.hardEdge,
         elevation: 4,
