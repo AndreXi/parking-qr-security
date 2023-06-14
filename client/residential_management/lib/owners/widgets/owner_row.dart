@@ -10,8 +10,8 @@ class OwnerRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 277,
-      height: 73,
+      width: 380,
+      height: 96,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: const Color.fromRGBO(248, 248, 248, 1),
