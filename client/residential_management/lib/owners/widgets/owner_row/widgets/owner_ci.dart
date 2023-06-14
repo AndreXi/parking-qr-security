@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:residential_management/tools/ci_formatter.dart';
 
 class OwnerCI extends StatelessWidget {
   const OwnerCI({required this.ci, super.key});
@@ -8,12 +9,12 @@ class OwnerCI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8 * 3, top: 8 * 2),
+      padding: const EdgeInsets.only(left: 8 * 3, top: 8 * 1.5),
       child: Text(
-        ci,
+        ciFormatter(ci),
         style: const TextStyle(
           fontSize: 14,
-          color: Color.fromRGBO(0, 0, 0, 0.6),
+          color: Colors.black45,
           height: 1,
         ),
       ),
