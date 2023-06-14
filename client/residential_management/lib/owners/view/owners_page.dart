@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:residential_management/l10n/l10n.dart';
 import 'package:residential_management/owners/__generated__/owners.req.gql.dart';
-import 'package:residential_management/owners/widgets/owner_row.dart';
+import 'package:residential_management/owners/widgets/owner_row/owner_row.dart';
 
 @RoutePage()
 class OwnersPage extends StatelessWidget {
@@ -42,7 +42,11 @@ class OwnersTable extends StatelessWidget {
 
         final owners = response?.data?.owners;
 
-        return Center(child: OwnerRow(owner: owners!.last));
+        if (owners == null) {
+          return const Text('Sorry no data :('); // TODO:
+        }
+
+        return Center(child: OwnerRow(owner: owners.last));
       },
     );
   }
