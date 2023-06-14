@@ -8,7 +8,7 @@ class OwnerCI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, top: 16),
+      padding: const EdgeInsets.only(left: 8 * 3, top: 8 * 2),
       child: Text(
         ci,
         style: const TextStyle(

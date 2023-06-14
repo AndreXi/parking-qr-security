@@ -3,6 +3,7 @@ import 'package:residential_management/owners/__generated__/owners.data.gql.dart
 import 'package:residential_management/owners/widgets/owner_row/widgets/building_location_badge.dart';
 import 'package:residential_management/owners/widgets/owner_row/widgets/owner_ci.dart';
 import 'package:residential_management/owners/widgets/owner_row/widgets/owner_name.dart';
+import 'package:residential_management/tools/grid_painter.dart';
 
 class OwnerRow extends StatelessWidget {
   const OwnerRow({required this.owner, super.key});
@@ -12,8 +13,8 @@ class OwnerRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 380,
-      height: 132,
+      width: 280,
+      height: 136,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: const Color.fromRGBO(248, 248, 248, 1),
@@ -26,17 +27,20 @@ class OwnerRow extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          BuildingLocationBadge(
-            apto: owner.apto,
-            floor: owner.floor,
-            buildingName: owner.building.name,
-          ),
-          OwnerName(firstName: owner.first_name, lastName: owner.last_name),
-          OwnerCI(ci: owner.ci),
-        ],
+      child: CustomPaint(
+        painter: const GridPainter(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            BuildingLocationBadge(
+              apto: owner.apto,
+              floor: owner.floor,
+              buildingName: owner.building.name,
+            ),
+            OwnerName(firstName: owner.first_name, lastName: owner.last_name),
+            OwnerCI(ci: owner.ci),
+          ],
+        ),
       ),
     );
   }
