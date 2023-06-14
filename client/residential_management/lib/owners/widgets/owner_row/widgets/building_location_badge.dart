@@ -22,13 +22,13 @@ class BuildingLocationBadge extends StatelessWidget {
     );
 
     return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
+      padding: const EdgeInsets.symmetric(horizontal: 8 * 1.5, vertical: 8 * 1),
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
           bottomRight: Radius.circular(8),
           topLeft: Radius.circular(8),
         ),
-        color: Color.fromRGBO(90, 100, 109, 0.88),
+        color: Colors.blue[600],
       ),
       child: Wrap(
         spacing: 8,
