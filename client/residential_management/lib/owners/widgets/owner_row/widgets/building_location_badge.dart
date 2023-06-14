@@ -25,8 +25,8 @@ class BuildingLocationBadge extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8 * 1.5, vertical: 8 * 1),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-          bottomRight: Radius.circular(8),
-          topLeft: Radius.circular(8),
+          bottomRight: Radius.circular(16),
+          topLeft: Radius.circular(16),
         ),
         color: Colors.blue[600],
       ),
