@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ferry/ferry.dart';
 import 'package:ferry_hive_store/ferry_hive_store.dart';
 import 'package:gql_http_link/gql_http_link.dart';
@@ -14,11 +16,16 @@ Future<Client> initGraphqlClient() async {
   // ignore: avoid_redundant_argument_values
   final cache = Cache(store: store, possibleTypes: possibleTypesMap);
 
-  final link = HttpLink('http://localhost:8080/v1/graphql');
+  // To use localhost in Android emulator
+  final domain = Platform.isAndroid ? '10.0.2.2' : 'localhost';
+  final link = HttpLink('http://$domain:8080/v1/graphql');
 
   final client = Client(
     link: link,
     cache: cache,
+    defaultFetchPolicies: {
+      OperationType.query: FetchPolicy.CacheAndNetwork,
+    },
   );
 
   return client;

@@ -1,0 +1,26 @@
+query GetOwners {
+  owners {
+    id
+    ci
+    first_name
+    last_name
+    floor
+    apto
+    email
+    phone
+    phone_1
+    building {
+      name
+    }
+    parking_slots_aggregate {
+      aggregate {
+        count
+      }
+    }
+    stores_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+}

@@ -803,9 +803,10 @@ type owners {
   building: buildings!
   building_id: Int!
   ci: String!
+  created_at: timestamptz!
   email: String
   first_name: String!
-  floor: Int!
+  floor: String!
   id: uuid!
   last_name: String!
 
@@ -954,6 +955,7 @@ type owners {
     """filter the rows returned"""
     where: stores_bool_exp
   ): stores_aggregate!
+  updated_at: timestamptz!
 
   """An array relationship"""
   vehicles(
@@ -1020,7 +1022,6 @@ type owners_aggregate_fields {
 """aggregate avg on columns"""
 type owners_avg_fields {
   building_id: Float
-  floor: Float
 }
 
 """
@@ -1034,9 +1035,10 @@ input owners_bool_exp {
   building: buildings_bool_exp
   building_id: Int_comparison_exp
   ci: String_comparison_exp
+  created_at: timestamptz_comparison_exp
   email: String_comparison_exp
   first_name: String_comparison_exp
-  floor: Int_comparison_exp
+  floor: String_comparison_exp
   id: uuid_comparison_exp
   last_name: String_comparison_exp
   parking_slots: parking_slots_bool_exp
@@ -1049,6 +1051,7 @@ input owners_bool_exp {
   rented_stores_aggregate: stores_aggregate_bool_exp
   stores: stores_bool_exp
   stores_aggregate: stores_aggregate_bool_exp
+  updated_at: timestamptz_comparison_exp
   vehicles: vehicles_bool_exp
   vehicles_aggregate: vehicles_aggregate_bool_exp
 }
@@ -1073,7 +1076,6 @@ input type for incrementing numeric columns in table "owners"
 """
 input owners_inc_input {
   building_id: Int
-  floor: Int
 }
 
 """
@@ -1084,9 +1086,10 @@ input owners_insert_input {
   building: buildings_obj_rel_insert_input
   building_id: Int
   ci: String
+  created_at: timestamptz
   email: String
   first_name: String
-  floor: Int
+  floor: String
   id: uuid
   last_name: String
   parking_slots: parking_slots_arr_rel_insert_input
@@ -1095,6 +1098,7 @@ input owners_insert_input {
   rented_parking_slots: parking_slots_arr_rel_insert_input
   rented_stores: stores_arr_rel_insert_input
   stores: stores_arr_rel_insert_input
+  updated_at: timestamptz
   vehicles: vehicles_arr_rel_insert_input
 }
 
@@ -1103,13 +1107,15 @@ type owners_max_fields {
   apto: String
   building_id: Int
   ci: String
+  created_at: timestamptz
   email: String
   first_name: String
-  floor: Int
+  floor: String
   id: uuid
   last_name: String
   phone: String
   phone_1: String
+  updated_at: timestamptz
 }
 
 """aggregate min on columns"""
@@ -1117,13 +1123,15 @@ type owners_min_fields {
   apto: String
   building_id: Int
   ci: String
+  created_at: timestamptz
   email: String
   first_name: String
-  floor: Int
+  floor: String
   id: uuid
   last_name: String
   phone: String
   phone_1: String
+  updated_at: timestamptz
 }
 
 """
@@ -1162,6 +1170,7 @@ input owners_order_by {
   building: buildings_order_by
   building_id: order_by
   ci: order_by
+  created_at: order_by
   email: order_by
   first_name: order_by
   floor: order_by
@@ -1173,6 +1182,7 @@ input owners_order_by {
   rented_parking_slots_aggregate: parking_slots_aggregate_order_by
   rented_stores_aggregate: stores_aggregate_order_by
   stores_aggregate: stores_aggregate_order_by
+  updated_at: order_by
   vehicles_aggregate: vehicles_aggregate_order_by
 }
 
@@ -1195,6 +1205,9 @@ enum owners_select_column {
   ci
 
   """column name"""
+  created_at
+
+  """column name"""
   email
 
   """column name"""
@@ -1214,6 +1227,9 @@ enum owners_select_column {
 
   """column name"""
   phone_1
+
+  """column name"""
+  updated_at
 }
 
 """
@@ -1223,31 +1239,30 @@ input owners_set_input {
   apto: String
   building_id: Int
   ci: String
+  created_at: timestamptz
   email: String
   first_name: String
-  floor: Int
+  floor: String
   id: uuid
   last_name: String
   phone: String
   phone_1: String
+  updated_at: timestamptz
 }
 
 """aggregate stddev on columns"""
 type owners_stddev_fields {
   building_id: Float
-  floor: Float
 }
 
 """aggregate stddev_pop on columns"""
 type owners_stddev_pop_fields {
   building_id: Float
-  floor: Float
 }
 
 """aggregate stddev_samp on columns"""
 type owners_stddev_samp_fields {
   building_id: Float
-  floor: Float
 }
 
 """
@@ -1266,19 +1281,20 @@ input owners_stream_cursor_value_input {
   apto: String
   building_id: Int
   ci: String
+  created_at: timestamptz
   email: String
   first_name: String
-  floor: Int
+  floor: String
   id: uuid
   last_name: String
   phone: String
   phone_1: String
+  updated_at: timestamptz
 }
 
 """aggregate sum on columns"""
 type owners_sum_fields {
   building_id: Int
-  floor: Int
 }
 
 """
@@ -1293,6 +1309,9 @@ enum owners_update_column {
 
   """column name"""
   ci
+
+  """column name"""
+  created_at
 
   """column name"""
   email
@@ -1314,6 +1333,9 @@ enum owners_update_column {
 
   """column name"""
   phone_1
+
+  """column name"""
+  updated_at
 }
 
 input owners_updates {
@@ -1330,19 +1352,16 @@ input owners_updates {
 """aggregate var_pop on columns"""
 type owners_var_pop_fields {
   building_id: Float
-  floor: Float
 }
 
 """aggregate var_samp on columns"""
 type owners_var_samp_fields {
   building_id: Float
-  floor: Float
 }
 
 """aggregate variance on columns"""
 type owners_variance_fields {
   building_id: Float
-  floor: Float
 }
 
 """Parking Slots data"""
@@ -3593,6 +3612,7 @@ input uuid_comparison_exp {
 type vehicles {
   brand: String!
   color: String!
+  created_at: timestamptz!
   id: Int!
   model: String!
 
@@ -3604,6 +3624,7 @@ type vehicles {
   parking_slot: parking_slots!
   parking_slot_id: Int!
   plate: String!
+  updated_at: timestamptz!
 }
 
 """
@@ -3692,6 +3713,7 @@ input vehicles_bool_exp {
   _or: [vehicles_bool_exp!]
   brand: String_comparison_exp
   color: String_comparison_exp
+  created_at: timestamptz_comparison_exp
   id: Int_comparison_exp
   model: String_comparison_exp
   owner: owners_bool_exp
@@ -3699,6 +3721,7 @@ input vehicles_bool_exp {
   parking_slot: parking_slots_bool_exp
   parking_slot_id: Int_comparison_exp
   plate: String_comparison_exp
+  updated_at: timestamptz_comparison_exp
 }
 
 """
@@ -3730,6 +3753,7 @@ input type for inserting data into table "vehicles"
 input vehicles_insert_input {
   brand: String
   color: String
+  created_at: timestamptz
   id: Int
   model: String
   owner: owners_obj_rel_insert_input
@@ -3737,17 +3761,20 @@ input vehicles_insert_input {
   parking_slot: parking_slots_obj_rel_insert_input
   parking_slot_id: Int
   plate: String
+  updated_at: timestamptz
 }
 
 """aggregate max on columns"""
 type vehicles_max_fields {
   brand: String
   color: String
+  created_at: timestamptz
   id: Int
   model: String
   owner_id: uuid
   parking_slot_id: Int
   plate: String
+  updated_at: timestamptz
 }
 
 """
@@ -3756,22 +3783,26 @@ order by max() on columns of table "vehicles"
 input vehicles_max_order_by {
   brand: order_by
   color: order_by
+  created_at: order_by
   id: order_by
   model: order_by
   owner_id: order_by
   parking_slot_id: order_by
   plate: order_by
+  updated_at: order_by
 }
 
 """aggregate min on columns"""
 type vehicles_min_fields {
   brand: String
   color: String
+  created_at: timestamptz
   id: Int
   model: String
   owner_id: uuid
   parking_slot_id: Int
   plate: String
+  updated_at: timestamptz
 }
 
 """
@@ -3780,11 +3811,13 @@ order by min() on columns of table "vehicles"
 input vehicles_min_order_by {
   brand: order_by
   color: order_by
+  created_at: order_by
   id: order_by
   model: order_by
   owner_id: order_by
   parking_slot_id: order_by
   plate: order_by
+  updated_at: order_by
 }
 
 """
@@ -3811,6 +3844,7 @@ input vehicles_on_conflict {
 input vehicles_order_by {
   brand: order_by
   color: order_by
+  created_at: order_by
   id: order_by
   model: order_by
   owner: owners_order_by
@@ -3818,6 +3852,7 @@ input vehicles_order_by {
   parking_slot: parking_slots_order_by
   parking_slot_id: order_by
   plate: order_by
+  updated_at: order_by
 }
 
 """primary key columns input for table: vehicles"""
@@ -3836,6 +3871,9 @@ enum vehicles_select_column {
   color
 
   """column name"""
+  created_at
+
+  """column name"""
   id
 
   """column name"""
@@ -3849,6 +3887,9 @@ enum vehicles_select_column {
 
   """column name"""
   plate
+
+  """column name"""
+  updated_at
 }
 
 """
@@ -3857,11 +3898,13 @@ input type for updating data in table "vehicles"
 input vehicles_set_input {
   brand: String
   color: String
+  created_at: timestamptz
   id: Int
   model: String
   owner_id: uuid
   parking_slot_id: Int
   plate: String
+  updated_at: timestamptz
 }
 
 """aggregate stddev on columns"""
@@ -3921,11 +3964,13 @@ input vehicles_stream_cursor_input {
 input vehicles_stream_cursor_value_input {
   brand: String
   color: String
+  created_at: timestamptz
   id: Int
   model: String
   owner_id: uuid
   parking_slot_id: Int
   plate: String
+  updated_at: timestamptz
 }
 
 """aggregate sum on columns"""
@@ -3953,6 +3998,9 @@ enum vehicles_update_column {
   color
 
   """column name"""
+  created_at
+
+  """column name"""
   id
 
   """column name"""
@@ -3966,6 +4014,9 @@ enum vehicles_update_column {
 
   """column name"""
   plate
+
+  """column name"""
+  updated_at
 }
 
 input vehicles_updates {
