@@ -43,7 +43,8 @@ class OwnersTable extends StatelessWidget {
         final owners = response?.data?.owners;
 
         if (owners == null) {
-          return const Text('Sorry no data :('); // TODO:
+          // TODO(AndreXi): Show something when there is no data.
+          return const Text('Sorry no data :(');
         }
 
         return Center(child: OwnerRow(owner: owners.last));

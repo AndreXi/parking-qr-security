@@ -4,7 +4,6 @@ import 'package:residential_management/owners/widgets/owner_row/widgets/building
 import 'package:residential_management/owners/widgets/owner_row/widgets/owner_ci.dart';
 import 'package:residential_management/owners/widgets/owner_row/widgets/owner_name.dart';
 import 'package:residential_management/owners/widgets/owner_row/widgets/owner_properties_row.dart';
-import 'package:residential_management/tools/grid_painter.dart';
 
 class OwnerRow extends StatelessWidget {
   const OwnerRow({required this.owner, super.key});
