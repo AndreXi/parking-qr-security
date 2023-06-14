@@ -18,7 +18,7 @@ Table owners {
   phone_1 text [null]
   email text [null]
   building_id integer
-  floor integer
+  floor text
   apto text
   created_at timestamp
   updated_at timestamp
