@@ -1,1 +1,1 @@
-export 'package:residential_management/parking_slots/parking_slots.dart';
+export './view/parking_slots_page.dart';
