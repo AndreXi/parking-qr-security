@@ -14,6 +14,7 @@ class OwnerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 280,
+      height: 136,
       child: Card(
         clipBehavior: Clip.hardEdge,
         elevation: 4,
