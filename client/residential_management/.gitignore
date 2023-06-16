@@ -126,7 +126,10 @@ app.*.map.json
 !.idea/runConfigurations/
 
 # Ferry GraphQL generated folders
-__generated__
+__generated__/
+
+# Gererated by Router
+*.gr.*
 
 # Ignore Folder
-_folder
+_folder/
