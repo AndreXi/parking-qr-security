@@ -4,5 +4,12 @@
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
   },
-  "ownersAppBarTitle": "Owners"
+  "ownersAppBarTitle": "Owners",
+  "@ownersAppBarTitle": {
+    "description": "Owners title"
+  },
+  "parkingSlotsAppBarTitle": "Parking Slots",
+  "@parkingSlotsAppBarTitle": {
+    "description": "Parking Slots title"
+  }
 }

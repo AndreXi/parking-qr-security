@@ -10,6 +10,10 @@ class AppRouter extends $AppRouter {
           page: OwnersRoute.page,
           initial: true,
           path: '/',
-        )
+        ),
+        AutoRoute(
+          page: ParkingSlotsRoute.page,
+          path: '/parking-slots',
+        ),
       ];
 }

@@ -4,5 +4,12 @@
   "@counterAppBarTitle": {
     "description": "Texto mostrado en la AppBar de la página del contador"
   },
-  "ownersAppBarTitle": "Propietarios"
+  "ownersAppBarTitle": "Propietarios",
+  "@ownersAppBarTitle": {
+    "description": "Titulo de la pagina de Propietarios"
+  },
+  "parkingSlotsAppBarTitle": "Puestos de Estacionamiento",
+  "@parkingSlotsAppBarTitle": {
+    "description": "Titulo de la pagina de Puestos de Estacionamiento"
+  }
 }
