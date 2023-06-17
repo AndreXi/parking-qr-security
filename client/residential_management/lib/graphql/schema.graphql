@@ -13,6 +13,21 @@ directive @cached(
   refresh: Boolean! = false
 ) on QUERY
 
+"""
+Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+  _gt: Boolean
+  _gte: Boolean
+  _in: [Boolean!]
+  _is_null: Boolean
+  _lt: Boolean
+  _lte: Boolean
+  _neq: Boolean
+  _nin: [Boolean!]
+}
+
 """Buildings in the same residential complex"""
 type buildings {
   created_at: timestamptz
@@ -288,6 +303,252 @@ input Int_comparison_exp {
   _nin: [Int!]
 }
 
+"""Locations of storages and parking slots"""
+type locations {
+  description: String
+  has_parking_slots: Boolean!
+  has_storages: Boolean!
+  id: Int!
+  name: String!
+}
+
+"""
+aggregated selection of "locations"
+"""
+type locations_aggregate {
+  aggregate: locations_aggregate_fields
+  nodes: [locations!]!
+}
+
+"""
+aggregate fields of "locations"
+"""
+type locations_aggregate_fields {
+  avg: locations_avg_fields
+  count(columns: [locations_select_column!], distinct: Boolean): Int!
+  max: locations_max_fields
+  min: locations_min_fields
+  stddev: locations_stddev_fields
+  stddev_pop: locations_stddev_pop_fields
+  stddev_samp: locations_stddev_samp_fields
+  sum: locations_sum_fields
+  var_pop: locations_var_pop_fields
+  var_samp: locations_var_samp_fields
+  variance: locations_variance_fields
+}
+
+"""aggregate avg on columns"""
+type locations_avg_fields {
+  id: Float
+}
+
+"""
+Boolean expression to filter rows from the table "locations". All fields are combined with a logical 'AND'.
+"""
+input locations_bool_exp {
+  _and: [locations_bool_exp!]
+  _not: locations_bool_exp
+  _or: [locations_bool_exp!]
+  description: String_comparison_exp
+  has_parking_slots: Boolean_comparison_exp
+  has_storages: Boolean_comparison_exp
+  id: Int_comparison_exp
+  name: String_comparison_exp
+}
+
+"""
+unique or primary key constraints on table "locations"
+"""
+enum locations_constraint {
+  """
+  unique or primary key constraint on columns "id"
+  """
+  locations_pkey
+}
+
+"""
+input type for incrementing numeric columns in table "locations"
+"""
+input locations_inc_input {
+  id: Int
+}
+
+"""
+input type for inserting data into table "locations"
+"""
+input locations_insert_input {
+  description: String
+  has_parking_slots: Boolean
+  has_storages: Boolean
+  id: Int
+  name: String
+}
+
+"""aggregate max on columns"""
+type locations_max_fields {
+  description: String
+  id: Int
+  name: String
+}
+
+"""aggregate min on columns"""
+type locations_min_fields {
+  description: String
+  id: Int
+  name: String
+}
+
+"""
+response of any mutation on the table "locations"
+"""
+type locations_mutation_response {
+  """number of rows affected by the mutation"""
+  affected_rows: Int!
+
+  """data from the rows affected by the mutation"""
+  returning: [locations!]!
+}
+
+"""
+on_conflict condition type for table "locations"
+"""
+input locations_on_conflict {
+  constraint: locations_constraint!
+  update_columns: [locations_update_column!]! = []
+  where: locations_bool_exp
+}
+
+"""Ordering options when selecting data from "locations"."""
+input locations_order_by {
+  description: order_by
+  has_parking_slots: order_by
+  has_storages: order_by
+  id: order_by
+  name: order_by
+}
+
+"""primary key columns input for table: locations"""
+input locations_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "locations"
+"""
+enum locations_select_column {
+  """column name"""
+  description
+
+  """column name"""
+  has_parking_slots
+
+  """column name"""
+  has_storages
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+"""
+input type for updating data in table "locations"
+"""
+input locations_set_input {
+  description: String
+  has_parking_slots: Boolean
+  has_storages: Boolean
+  id: Int
+  name: String
+}
+
+"""aggregate stddev on columns"""
+type locations_stddev_fields {
+  id: Float
+}
+
+"""aggregate stddev_pop on columns"""
+type locations_stddev_pop_fields {
+  id: Float
+}
+
+"""aggregate stddev_samp on columns"""
+type locations_stddev_samp_fields {
+  id: Float
+}
+
+"""
+Streaming cursor of the table "locations"
+"""
+input locations_stream_cursor_input {
+  """Stream column input with initial value"""
+  initial_value: locations_stream_cursor_value_input!
+
+  """cursor ordering"""
+  ordering: cursor_ordering
+}
+
+"""Initial value of the column from where the streaming should start"""
+input locations_stream_cursor_value_input {
+  description: String
+  has_parking_slots: Boolean
+  has_storages: Boolean
+  id: Int
+  name: String
+}
+
+"""aggregate sum on columns"""
+type locations_sum_fields {
+  id: Int
+}
+
+"""
+update columns of table "locations"
+"""
+enum locations_update_column {
+  """column name"""
+  description
+
+  """column name"""
+  has_parking_slots
+
+  """column name"""
+  has_storages
+
+  """column name"""
+  id
+
+  """column name"""
+  name
+}
+
+input locations_updates {
+  """increments the numeric columns with given value of the filtered values"""
+  _inc: locations_inc_input
+
+  """sets the columns of the filtered rows to the given values"""
+  _set: locations_set_input
+
+  """filter the rows which have to be updated"""
+  where: locations_bool_exp!
+}
+
+"""aggregate var_pop on columns"""
+type locations_var_pop_fields {
+  id: Float
+}
+
+"""aggregate var_samp on columns"""
+type locations_var_samp_fields {
+  id: Float
+}
+
+"""aggregate variance on columns"""
+type locations_variance_fields {
+  id: Float
+}
+
 """mutation root"""
 type mutation_root {
   """
@@ -302,6 +563,19 @@ type mutation_root {
   delete single row from the table: "buildings"
   """
   delete_buildings_by_pk(id: Int!): buildings
+
+  """
+  delete data from the table: "locations"
+  """
+  delete_locations(
+    """filter the rows which have to be deleted"""
+    where: locations_bool_exp!
+  ): locations_mutation_response
+
+  """
+  delete single row from the table: "locations"
+  """
+  delete_locations_by_pk(id: Int!): locations
 
   """
   delete data from the table: "owners"
@@ -330,17 +604,17 @@ type mutation_root {
   delete_parking_slots_by_pk(id: Int!): parking_slots
 
   """
-  delete data from the table: "stores"
+  delete data from the table: "storages"
   """
-  delete_stores(
+  delete_storages(
     """filter the rows which have to be deleted"""
-    where: stores_bool_exp!
-  ): stores_mutation_response
+    where: storages_bool_exp!
+  ): storages_mutation_response
 
   """
-  delete single row from the table: "stores"
+  delete single row from the table: "storages"
   """
-  delete_stores_by_pk(id: Int!): stores
+  delete_storages_by_pk(id: Int!): storages
 
   """
   delete data from the table: "system.roles"
@@ -404,6 +678,28 @@ type mutation_root {
   ): buildings
 
   """
+  insert data into the table: "locations"
+  """
+  insert_locations(
+    """the rows to be inserted"""
+    objects: [locations_insert_input!]!
+
+    """upsert condition"""
+    on_conflict: locations_on_conflict
+  ): locations_mutation_response
+
+  """
+  insert a single row into the table: "locations"
+  """
+  insert_locations_one(
+    """the row to be inserted"""
+    object: locations_insert_input!
+
+    """upsert condition"""
+    on_conflict: locations_on_conflict
+  ): locations
+
+  """
   insert data into the table: "owners"
   """
   insert_owners(
@@ -448,26 +744,26 @@ type mutation_root {
   ): parking_slots
 
   """
-  insert data into the table: "stores"
+  insert data into the table: "storages"
   """
-  insert_stores(
+  insert_storages(
     """the rows to be inserted"""
-    objects: [stores_insert_input!]!
+    objects: [storages_insert_input!]!
 
     """upsert condition"""
-    on_conflict: stores_on_conflict
-  ): stores_mutation_response
+    on_conflict: storages_on_conflict
+  ): storages_mutation_response
 
   """
-  insert a single row into the table: "stores"
+  insert a single row into the table: "storages"
   """
-  insert_stores_one(
+  insert_storages_one(
     """the row to be inserted"""
-    object: stores_insert_input!
+    object: storages_insert_input!
 
     """upsert condition"""
-    on_conflict: stores_on_conflict
-  ): stores
+    on_conflict: storages_on_conflict
+  ): storages
 
   """
   insert data into the table: "system.roles"
@@ -570,6 +866,40 @@ type mutation_root {
   ): [buildings_mutation_response]
 
   """
+  update data of the table: "locations"
+  """
+  update_locations(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: locations_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: locations_set_input
+
+    """filter the rows which have to be updated"""
+    where: locations_bool_exp!
+  ): locations_mutation_response
+
+  """
+  update single row of the table: "locations"
+  """
+  update_locations_by_pk(
+    """increments the numeric columns with given value of the filtered values"""
+    _inc: locations_inc_input
+
+    """sets the columns of the filtered rows to the given values"""
+    _set: locations_set_input
+    pk_columns: locations_pk_columns_input!
+  ): locations
+
+  """
+  update multiples rows of table: "locations"
+  """
+  update_locations_many(
+    """updates to execute, in order"""
+    updates: [locations_updates!]!
+  ): [locations_mutation_response]
+
+  """
   update data of the table: "owners"
   """
   update_owners(
@@ -638,38 +968,38 @@ type mutation_root {
   ): [parking_slots_mutation_response]
 
   """
-  update data of the table: "stores"
+  update data of the table: "storages"
   """
-  update_stores(
+  update_storages(
     """increments the numeric columns with given value of the filtered values"""
-    _inc: stores_inc_input
+    _inc: storages_inc_input
 
     """sets the columns of the filtered rows to the given values"""
-    _set: stores_set_input
+    _set: storages_set_input
 
     """filter the rows which have to be updated"""
-    where: stores_bool_exp!
-  ): stores_mutation_response
+    where: storages_bool_exp!
+  ): storages_mutation_response
 
   """
-  update single row of the table: "stores"
+  update single row of the table: "storages"
   """
-  update_stores_by_pk(
+  update_storages_by_pk(
     """increments the numeric columns with given value of the filtered values"""
-    _inc: stores_inc_input
+    _inc: storages_inc_input
 
     """sets the columns of the filtered rows to the given values"""
-    _set: stores_set_input
-    pk_columns: stores_pk_columns_input!
-  ): stores
+    _set: storages_set_input
+    pk_columns: storages_pk_columns_input!
+  ): storages
 
   """
-  update multiples rows of table: "stores"
+  update multiples rows of table: "storages"
   """
-  update_stores_many(
+  update_storages_many(
     """updates to execute, in order"""
-    updates: [stores_updates!]!
-  ): [stores_mutation_response]
+    updates: [storages_updates!]!
+  ): [storages_mutation_response]
 
   """
   update data of the table: "system.roles"
@@ -887,7 +1217,7 @@ type owners {
   """An array relationship"""
   rented_stores(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -896,16 +1226,16 @@ type owners {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): [stores!]!
+    where: storages_bool_exp
+  ): [storages!]!
 
   """An aggregate relationship"""
   rented_stores_aggregate(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -914,16 +1244,16 @@ type owners {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): stores_aggregate!
+    where: storages_bool_exp
+  ): storages_aggregate!
 
   """An array relationship"""
   stores(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -932,16 +1262,16 @@ type owners {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): [stores!]!
+    where: storages_bool_exp
+  ): [storages!]!
 
   """An aggregate relationship"""
   stores_aggregate(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -950,11 +1280,11 @@ type owners {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): stores_aggregate!
+    where: storages_bool_exp
+  ): storages_aggregate!
   updated_at: timestamptz!
 
   """An array relationship"""
@@ -1047,10 +1377,10 @@ input owners_bool_exp {
   phone_1: String_comparison_exp
   rented_parking_slots: parking_slots_bool_exp
   rented_parking_slots_aggregate: parking_slots_aggregate_bool_exp
-  rented_stores: stores_bool_exp
-  rented_stores_aggregate: stores_aggregate_bool_exp
-  stores: stores_bool_exp
-  stores_aggregate: stores_aggregate_bool_exp
+  rented_stores: storages_bool_exp
+  rented_stores_aggregate: storages_aggregate_bool_exp
+  stores: storages_bool_exp
+  stores_aggregate: storages_aggregate_bool_exp
   updated_at: timestamptz_comparison_exp
   vehicles: vehicles_bool_exp
   vehicles_aggregate: vehicles_aggregate_bool_exp
@@ -1096,8 +1426,8 @@ input owners_insert_input {
   phone: String
   phone_1: String
   rented_parking_slots: parking_slots_arr_rel_insert_input
-  rented_stores: stores_arr_rel_insert_input
-  stores: stores_arr_rel_insert_input
+  rented_stores: storages_arr_rel_insert_input
+  stores: storages_arr_rel_insert_input
   updated_at: timestamptz
   vehicles: vehicles_arr_rel_insert_input
 }
@@ -1180,8 +1510,8 @@ input owners_order_by {
   phone: order_by
   phone_1: order_by
   rented_parking_slots_aggregate: parking_slots_aggregate_order_by
-  rented_stores_aggregate: stores_aggregate_order_by
-  stores_aggregate: stores_aggregate_order_by
+  rented_stores_aggregate: storages_aggregate_order_by
+  stores_aggregate: storages_aggregate_order_by
   updated_at: order_by
   vehicles_aggregate: vehicles_aggregate_order_by
 }
@@ -1368,8 +1698,8 @@ type owners_variance_fields {
 type parking_slots {
   code: String!
   created_at: timestamptz!
-  floor: Int!
   id: Int!
+  location_id: Int!
 
   """An object relationship"""
   owner: owners
@@ -1480,16 +1810,16 @@ input parking_slots_arr_rel_insert_input {
 
 """aggregate avg on columns"""
 type parking_slots_avg_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by avg() on columns of table "parking_slots"
 """
 input parking_slots_avg_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """
@@ -1501,8 +1831,8 @@ input parking_slots_bool_exp {
   _or: [parking_slots_bool_exp!]
   code: String_comparison_exp
   created_at: timestamptz_comparison_exp
-  floor: Int_comparison_exp
   id: Int_comparison_exp
+  location_id: Int_comparison_exp
   owner: owners_bool_exp
   owner_id: uuid_comparison_exp
   qr_code: uuid_comparison_exp
@@ -1536,8 +1866,8 @@ enum parking_slots_constraint {
 input type for incrementing numeric columns in table "parking_slots"
 """
 input parking_slots_inc_input {
-  floor: Int
   id: Int
+  location_id: Int
 }
 
 """
@@ -1546,8 +1876,8 @@ input type for inserting data into table "parking_slots"
 input parking_slots_insert_input {
   code: String
   created_at: timestamptz
-  floor: Int
   id: Int
+  location_id: Int
   owner: owners_obj_rel_insert_input
   owner_id: uuid
   qr_code: uuid
@@ -1560,8 +1890,8 @@ input parking_slots_insert_input {
 type parking_slots_max_fields {
   code: String
   created_at: timestamptz
-  floor: Int
   id: Int
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -1574,8 +1904,8 @@ order by max() on columns of table "parking_slots"
 input parking_slots_max_order_by {
   code: order_by
   created_at: order_by
-  floor: order_by
   id: order_by
+  location_id: order_by
   owner_id: order_by
   qr_code: order_by
   renter_id: order_by
@@ -1586,8 +1916,8 @@ input parking_slots_max_order_by {
 type parking_slots_min_fields {
   code: String
   created_at: timestamptz
-  floor: Int
   id: Int
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -1600,8 +1930,8 @@ order by min() on columns of table "parking_slots"
 input parking_slots_min_order_by {
   code: order_by
   created_at: order_by
-  floor: order_by
   id: order_by
+  location_id: order_by
   owner_id: order_by
   qr_code: order_by
   renter_id: order_by
@@ -1642,8 +1972,8 @@ input parking_slots_on_conflict {
 input parking_slots_order_by {
   code: order_by
   created_at: order_by
-  floor: order_by
   id: order_by
+  location_id: order_by
   owner: owners_order_by
   owner_id: order_by
   qr_code: order_by
@@ -1668,10 +1998,10 @@ enum parking_slots_select_column {
   created_at
 
   """column name"""
-  floor
+  id
 
   """column name"""
-  id
+  location_id
 
   """column name"""
   owner_id
@@ -1692,8 +2022,8 @@ input type for updating data in table "parking_slots"
 input parking_slots_set_input {
   code: String
   created_at: timestamptz
-  floor: Int
   id: Int
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -1702,44 +2032,44 @@ input parking_slots_set_input {
 
 """aggregate stddev on columns"""
 type parking_slots_stddev_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by stddev() on columns of table "parking_slots"
 """
 input parking_slots_stddev_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """aggregate stddev_pop on columns"""
 type parking_slots_stddev_pop_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by stddev_pop() on columns of table "parking_slots"
 """
 input parking_slots_stddev_pop_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """aggregate stddev_samp on columns"""
 type parking_slots_stddev_samp_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by stddev_samp() on columns of table "parking_slots"
 """
 input parking_slots_stddev_samp_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """
@@ -1757,8 +2087,8 @@ input parking_slots_stream_cursor_input {
 input parking_slots_stream_cursor_value_input {
   code: String
   created_at: timestamptz
-  floor: Int
   id: Int
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -1767,16 +2097,16 @@ input parking_slots_stream_cursor_value_input {
 
 """aggregate sum on columns"""
 type parking_slots_sum_fields {
-  floor: Int
   id: Int
+  location_id: Int
 }
 
 """
 order by sum() on columns of table "parking_slots"
 """
 input parking_slots_sum_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """
@@ -1790,10 +2120,10 @@ enum parking_slots_update_column {
   created_at
 
   """column name"""
-  floor
+  id
 
   """column name"""
-  id
+  location_id
 
   """column name"""
   owner_id
@@ -1821,44 +2151,44 @@ input parking_slots_updates {
 
 """aggregate var_pop on columns"""
 type parking_slots_var_pop_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by var_pop() on columns of table "parking_slots"
 """
 input parking_slots_var_pop_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """aggregate var_samp on columns"""
 type parking_slots_var_samp_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by var_samp() on columns of table "parking_slots"
 """
 input parking_slots_var_samp_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 """aggregate variance on columns"""
 type parking_slots_variance_fields {
-  floor: Float
   id: Float
+  location_id: Float
 }
 
 """
 order by variance() on columns of table "parking_slots"
 """
 input parking_slots_variance_order_by {
-  floor: order_by
   id: order_by
+  location_id: order_by
 }
 
 type query_root {
@@ -1904,6 +2234,49 @@ type query_root {
 
   """fetch data from the table: "buildings" using primary key columns"""
   buildings_by_pk(id: Int!): buildings
+
+  """
+  fetch data from the table: "locations"
+  """
+  locations(
+    """distinct select on columns"""
+    distinct_on: [locations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [locations_order_by!]
+
+    """filter the rows returned"""
+    where: locations_bool_exp
+  ): [locations!]!
+
+  """
+  fetch aggregated fields from the table: "locations"
+  """
+  locations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [locations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [locations_order_by!]
+
+    """filter the rows returned"""
+    where: locations_bool_exp
+  ): locations_aggregate!
+
+  """fetch data from the table: "locations" using primary key columns"""
+  locations_by_pk(id: Int!): locations
 
   """
   fetch data from the table: "owners"
@@ -1987,10 +2360,12 @@ type query_root {
   """fetch data from the table: "parking_slots" using primary key columns"""
   parking_slots_by_pk(id: Int!): parking_slots
 
-  """An array relationship"""
-  stores(
+  """
+  fetch data from the table: "storages"
+  """
+  storages(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -1999,16 +2374,18 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): [stores!]!
+    where: storages_bool_exp
+  ): [storages!]!
 
-  """An aggregate relationship"""
-  stores_aggregate(
+  """
+  fetch aggregated fields from the table: "storages"
+  """
+  storages_aggregate(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -2017,14 +2394,14 @@ type query_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): stores_aggregate!
+    where: storages_bool_exp
+  ): storages_aggregate!
 
-  """fetch data from the table: "stores" using primary key columns"""
-  stores_by_pk(id: Int!): stores
+  """fetch data from the table: "storages" using primary key columns"""
+  storages_by_pk(id: Int!): storages
 
   """
   fetch data from the table: "system.roles"
@@ -2153,11 +2530,11 @@ type query_root {
 }
 
 """Table to track stores"""
-type stores {
+type storages {
   code: String!
   created_at: timestamptz!
   id: Int!
-  location: String
+  location_id: Int!
   owner_id: uuid
   qr_code: uuid!
   renter_id: uuid
@@ -2165,91 +2542,93 @@ type stores {
 }
 
 """
-aggregated selection of "stores"
+aggregated selection of "storages"
 """
-type stores_aggregate {
-  aggregate: stores_aggregate_fields
-  nodes: [stores!]!
+type storages_aggregate {
+  aggregate: storages_aggregate_fields
+  nodes: [storages!]!
 }
 
-input stores_aggregate_bool_exp {
-  count: stores_aggregate_bool_exp_count
+input storages_aggregate_bool_exp {
+  count: storages_aggregate_bool_exp_count
 }
 
-input stores_aggregate_bool_exp_count {
-  arguments: [stores_select_column!]
+input storages_aggregate_bool_exp_count {
+  arguments: [storages_select_column!]
   distinct: Boolean
-  filter: stores_bool_exp
+  filter: storages_bool_exp
   predicate: Int_comparison_exp!
 }
 
 """
-aggregate fields of "stores"
+aggregate fields of "storages"
 """
-type stores_aggregate_fields {
-  avg: stores_avg_fields
-  count(columns: [stores_select_column!], distinct: Boolean): Int!
-  max: stores_max_fields
-  min: stores_min_fields
-  stddev: stores_stddev_fields
-  stddev_pop: stores_stddev_pop_fields
-  stddev_samp: stores_stddev_samp_fields
-  sum: stores_sum_fields
-  var_pop: stores_var_pop_fields
-  var_samp: stores_var_samp_fields
-  variance: stores_variance_fields
+type storages_aggregate_fields {
+  avg: storages_avg_fields
+  count(columns: [storages_select_column!], distinct: Boolean): Int!
+  max: storages_max_fields
+  min: storages_min_fields
+  stddev: storages_stddev_fields
+  stddev_pop: storages_stddev_pop_fields
+  stddev_samp: storages_stddev_samp_fields
+  sum: storages_sum_fields
+  var_pop: storages_var_pop_fields
+  var_samp: storages_var_samp_fields
+  variance: storages_variance_fields
 }
 
 """
-order by aggregate values of table "stores"
+order by aggregate values of table "storages"
 """
-input stores_aggregate_order_by {
-  avg: stores_avg_order_by
+input storages_aggregate_order_by {
+  avg: storages_avg_order_by
   count: order_by
-  max: stores_max_order_by
-  min: stores_min_order_by
-  stddev: stores_stddev_order_by
-  stddev_pop: stores_stddev_pop_order_by
-  stddev_samp: stores_stddev_samp_order_by
-  sum: stores_sum_order_by
-  var_pop: stores_var_pop_order_by
-  var_samp: stores_var_samp_order_by
-  variance: stores_variance_order_by
+  max: storages_max_order_by
+  min: storages_min_order_by
+  stddev: storages_stddev_order_by
+  stddev_pop: storages_stddev_pop_order_by
+  stddev_samp: storages_stddev_samp_order_by
+  sum: storages_sum_order_by
+  var_pop: storages_var_pop_order_by
+  var_samp: storages_var_samp_order_by
+  variance: storages_variance_order_by
 }
 
 """
-input type for inserting array relation for remote table "stores"
+input type for inserting array relation for remote table "storages"
 """
-input stores_arr_rel_insert_input {
-  data: [stores_insert_input!]!
+input storages_arr_rel_insert_input {
+  data: [storages_insert_input!]!
 
   """upsert condition"""
-  on_conflict: stores_on_conflict
+  on_conflict: storages_on_conflict
 }
 
 """aggregate avg on columns"""
-type stores_avg_fields {
+type storages_avg_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by avg() on columns of table "stores"
+order by avg() on columns of table "storages"
 """
-input stores_avg_order_by {
+input storages_avg_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """
-Boolean expression to filter rows from the table "stores". All fields are combined with a logical 'AND'.
+Boolean expression to filter rows from the table "storages". All fields are combined with a logical 'AND'.
 """
-input stores_bool_exp {
-  _and: [stores_bool_exp!]
-  _not: stores_bool_exp
-  _or: [stores_bool_exp!]
+input storages_bool_exp {
+  _and: [storages_bool_exp!]
+  _not: storages_bool_exp
+  _or: [storages_bool_exp!]
   code: String_comparison_exp
   created_at: timestamptz_comparison_exp
   id: Int_comparison_exp
-  location: String_comparison_exp
+  location_id: Int_comparison_exp
   owner_id: uuid_comparison_exp
   qr_code: uuid_comparison_exp
   renter_id: uuid_comparison_exp
@@ -2257,9 +2636,9 @@ input stores_bool_exp {
 }
 
 """
-unique or primary key constraints on table "stores"
+unique or primary key constraints on table "storages"
 """
-enum stores_constraint {
+enum storages_constraint {
   """
   unique or primary key constraint on columns "code"
   """
@@ -2277,20 +2656,21 @@ enum stores_constraint {
 }
 
 """
-input type for incrementing numeric columns in table "stores"
+input type for incrementing numeric columns in table "storages"
 """
-input stores_inc_input {
+input storages_inc_input {
   id: Int
+  location_id: Int
 }
 
 """
-input type for inserting data into table "stores"
+input type for inserting data into table "storages"
 """
-input stores_insert_input {
+input storages_insert_input {
   code: String
   created_at: timestamptz
   id: Int
-  location: String
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -2298,11 +2678,11 @@ input stores_insert_input {
 }
 
 """aggregate max on columns"""
-type stores_max_fields {
+type storages_max_fields {
   code: String
   created_at: timestamptz
   id: Int
-  location: String
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -2310,13 +2690,13 @@ type stores_max_fields {
 }
 
 """
-order by max() on columns of table "stores"
+order by max() on columns of table "storages"
 """
-input stores_max_order_by {
+input storages_max_order_by {
   code: order_by
   created_at: order_by
   id: order_by
-  location: order_by
+  location_id: order_by
   owner_id: order_by
   qr_code: order_by
   renter_id: order_by
@@ -2324,11 +2704,11 @@ input stores_max_order_by {
 }
 
 """aggregate min on columns"""
-type stores_min_fields {
+type storages_min_fields {
   code: String
   created_at: timestamptz
   id: Int
-  location: String
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -2336,13 +2716,13 @@ type stores_min_fields {
 }
 
 """
-order by min() on columns of table "stores"
+order by min() on columns of table "storages"
 """
-input stores_min_order_by {
+input storages_min_order_by {
   code: order_by
   created_at: order_by
   id: order_by
-  location: order_by
+  location_id: order_by
   owner_id: order_by
   qr_code: order_by
   renter_id: order_by
@@ -2350,46 +2730,46 @@ input stores_min_order_by {
 }
 
 """
-response of any mutation on the table "stores"
+response of any mutation on the table "storages"
 """
-type stores_mutation_response {
+type storages_mutation_response {
   """number of rows affected by the mutation"""
   affected_rows: Int!
 
   """data from the rows affected by the mutation"""
-  returning: [stores!]!
+  returning: [storages!]!
 }
 
 """
-on_conflict condition type for table "stores"
+on_conflict condition type for table "storages"
 """
-input stores_on_conflict {
-  constraint: stores_constraint!
-  update_columns: [stores_update_column!]! = []
-  where: stores_bool_exp
+input storages_on_conflict {
+  constraint: storages_constraint!
+  update_columns: [storages_update_column!]! = []
+  where: storages_bool_exp
 }
 
-"""Ordering options when selecting data from "stores"."""
-input stores_order_by {
+"""Ordering options when selecting data from "storages"."""
+input storages_order_by {
   code: order_by
   created_at: order_by
   id: order_by
-  location: order_by
+  location_id: order_by
   owner_id: order_by
   qr_code: order_by
   renter_id: order_by
   updated_at: order_by
 }
 
-"""primary key columns input for table: stores"""
-input stores_pk_columns_input {
+"""primary key columns input for table: storages"""
+input storages_pk_columns_input {
   id: Int!
 }
 
 """
-select columns of table "stores"
+select columns of table "storages"
 """
-enum stores_select_column {
+enum storages_select_column {
   """column name"""
   code
 
@@ -2400,7 +2780,7 @@ enum stores_select_column {
   id
 
   """column name"""
-  location
+  location_id
 
   """column name"""
   owner_id
@@ -2416,13 +2796,13 @@ enum stores_select_column {
 }
 
 """
-input type for updating data in table "stores"
+input type for updating data in table "storages"
 """
-input stores_set_input {
+input storages_set_input {
   code: String
   created_at: timestamptz
   id: Int
-  location: String
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -2430,58 +2810,64 @@ input stores_set_input {
 }
 
 """aggregate stddev on columns"""
-type stores_stddev_fields {
+type storages_stddev_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by stddev() on columns of table "stores"
+order by stddev() on columns of table "storages"
 """
-input stores_stddev_order_by {
+input storages_stddev_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """aggregate stddev_pop on columns"""
-type stores_stddev_pop_fields {
+type storages_stddev_pop_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by stddev_pop() on columns of table "stores"
+order by stddev_pop() on columns of table "storages"
 """
-input stores_stddev_pop_order_by {
+input storages_stddev_pop_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """aggregate stddev_samp on columns"""
-type stores_stddev_samp_fields {
+type storages_stddev_samp_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by stddev_samp() on columns of table "stores"
+order by stddev_samp() on columns of table "storages"
 """
-input stores_stddev_samp_order_by {
+input storages_stddev_samp_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """
-Streaming cursor of the table "stores"
+Streaming cursor of the table "storages"
 """
-input stores_stream_cursor_input {
+input storages_stream_cursor_input {
   """Stream column input with initial value"""
-  initial_value: stores_stream_cursor_value_input!
+  initial_value: storages_stream_cursor_value_input!
 
   """cursor ordering"""
   ordering: cursor_ordering
 }
 
 """Initial value of the column from where the streaming should start"""
-input stores_stream_cursor_value_input {
+input storages_stream_cursor_value_input {
   code: String
   created_at: timestamptz
   id: Int
-  location: String
+  location_id: Int
   owner_id: uuid
   qr_code: uuid
   renter_id: uuid
@@ -2489,21 +2875,23 @@ input stores_stream_cursor_value_input {
 }
 
 """aggregate sum on columns"""
-type stores_sum_fields {
+type storages_sum_fields {
   id: Int
+  location_id: Int
 }
 
 """
-order by sum() on columns of table "stores"
+order by sum() on columns of table "storages"
 """
-input stores_sum_order_by {
+input storages_sum_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """
-update columns of table "stores"
+update columns of table "storages"
 """
-enum stores_update_column {
+enum storages_update_column {
   """column name"""
   code
 
@@ -2514,7 +2902,7 @@ enum stores_update_column {
   id
 
   """column name"""
-  location
+  location_id
 
   """column name"""
   owner_id
@@ -2529,51 +2917,57 @@ enum stores_update_column {
   updated_at
 }
 
-input stores_updates {
+input storages_updates {
   """increments the numeric columns with given value of the filtered values"""
-  _inc: stores_inc_input
+  _inc: storages_inc_input
 
   """sets the columns of the filtered rows to the given values"""
-  _set: stores_set_input
+  _set: storages_set_input
 
   """filter the rows which have to be updated"""
-  where: stores_bool_exp!
+  where: storages_bool_exp!
 }
 
 """aggregate var_pop on columns"""
-type stores_var_pop_fields {
+type storages_var_pop_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by var_pop() on columns of table "stores"
+order by var_pop() on columns of table "storages"
 """
-input stores_var_pop_order_by {
+input storages_var_pop_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """aggregate var_samp on columns"""
-type stores_var_samp_fields {
+type storages_var_samp_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by var_samp() on columns of table "stores"
+order by var_samp() on columns of table "storages"
 """
-input stores_var_samp_order_by {
+input storages_var_samp_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """aggregate variance on columns"""
-type stores_variance_fields {
+type storages_variance_fields {
   id: Float
+  location_id: Float
 }
 
 """
-order by variance() on columns of table "stores"
+order by variance() on columns of table "storages"
 """
-input stores_variance_order_by {
+input storages_variance_order_by {
   id: order_by
+  location_id: order_by
 }
 
 """
@@ -2688,6 +3082,63 @@ type subscription_root {
   ): [buildings!]!
 
   """
+  fetch data from the table: "locations"
+  """
+  locations(
+    """distinct select on columns"""
+    distinct_on: [locations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [locations_order_by!]
+
+    """filter the rows returned"""
+    where: locations_bool_exp
+  ): [locations!]!
+
+  """
+  fetch aggregated fields from the table: "locations"
+  """
+  locations_aggregate(
+    """distinct select on columns"""
+    distinct_on: [locations_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [locations_order_by!]
+
+    """filter the rows returned"""
+    where: locations_bool_exp
+  ): locations_aggregate!
+
+  """fetch data from the table: "locations" using primary key columns"""
+  locations_by_pk(id: Int!): locations
+
+  """
+  fetch data from the table in a streaming manner: "locations"
+  """
+  locations_stream(
+    """maximum number of rows returned in a single batch"""
+    batch_size: Int!
+
+    """cursor to stream the results returned by the query"""
+    cursor: [locations_stream_cursor_input]!
+
+    """filter the rows returned"""
+    where: locations_bool_exp
+  ): [locations!]!
+
+  """
   fetch data from the table: "owners"
   """
   owners(
@@ -2797,10 +3248,12 @@ type subscription_root {
     where: parking_slots_bool_exp
   ): [parking_slots!]!
 
-  """An array relationship"""
-  stores(
+  """
+  fetch data from the table: "storages"
+  """
+  storages(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -2809,16 +3262,18 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): [stores!]!
+    where: storages_bool_exp
+  ): [storages!]!
 
-  """An aggregate relationship"""
-  stores_aggregate(
+  """
+  fetch aggregated fields from the table: "storages"
+  """
+  storages_aggregate(
     """distinct select on columns"""
-    distinct_on: [stores_select_column!]
+    distinct_on: [storages_select_column!]
 
     """limit the number of rows returned"""
     limit: Int
@@ -2827,28 +3282,28 @@ type subscription_root {
     offset: Int
 
     """sort the rows by one or more columns"""
-    order_by: [stores_order_by!]
+    order_by: [storages_order_by!]
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): stores_aggregate!
+    where: storages_bool_exp
+  ): storages_aggregate!
 
-  """fetch data from the table: "stores" using primary key columns"""
-  stores_by_pk(id: Int!): stores
+  """fetch data from the table: "storages" using primary key columns"""
+  storages_by_pk(id: Int!): storages
 
   """
-  fetch data from the table in a streaming manner: "stores"
+  fetch data from the table in a streaming manner: "storages"
   """
-  stores_stream(
+  storages_stream(
     """maximum number of rows returned in a single batch"""
     batch_size: Int!
 
     """cursor to stream the results returned by the query"""
-    cursor: [stores_stream_cursor_input]!
+    cursor: [storages_stream_cursor_input]!
 
     """filter the rows returned"""
-    where: stores_bool_exp
-  ): [stores!]!
+    where: storages_bool_exp
+  ): [storages!]!
 
   """
   fetch data from the table: "system.roles"

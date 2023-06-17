@@ -1,0 +1,3 @@
+table:
+  name: storages
+  schema: public

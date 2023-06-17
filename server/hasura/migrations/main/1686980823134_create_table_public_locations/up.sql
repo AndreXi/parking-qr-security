@@ -1,0 +1,1 @@
+CREATE TABLE "public"."locations" ("id" serial NOT NULL, "name" text NOT NULL, "description" text, "has_parking_slots" boolean NOT NULL, "has_storages" boolean NOT NULL, PRIMARY KEY ("id") );COMMENT ON TABLE "public"."locations" IS E'Locations of storages and parking slots';
