@@ -19,5 +19,9 @@ class AppRouter extends $AppRouter {
           page: ParkingSlotsRoute.page,
           path: '/parking-slots',
         ),
+        AutoRoute(
+          page: ParkingSlotsEditorRoute.page,
+          path: '/parking-slots/editor',
+        ),
       ];
 }

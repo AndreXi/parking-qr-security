@@ -28,6 +28,12 @@ class DebugPage extends StatelessWidget {
               icon: const Icon(Icons.local_parking),
               label: const Text('Parking Slots'),
             ),
+            ElevatedButton.icon(
+              onPressed: () =>
+                  context.router.push(const ParkingSlotsEditorRoute()),
+              icon: const Icon(Icons.edit_road),
+              label: const Text('Parking Slots Editor'),
+            ),
           ],
         ),
       ),

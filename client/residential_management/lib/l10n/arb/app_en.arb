@@ -11,5 +11,9 @@
   "parkingSlotsAppBarTitle": "Parking Slots",
   "@parkingSlotsAppBarTitle": {
     "description": "Parking Slots title"
+  },
+  "parkingSlotsEditorAppBarTitle": "Parking Slots Editor",
+  "@parkingSlotsEditorAppBarTitle": {
+    "description": "Title of parking slots editor page"
   }
 }
