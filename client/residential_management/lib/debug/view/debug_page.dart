@@ -24,7 +24,7 @@ class DebugPage extends StatelessWidget {
               label: const Text('Owners'),
             ),
             ElevatedButton.icon(
-              onPressed: () => context.router.push(const ParkingSlotsRoute()),
+              onPressed: () => context.router.push(ParkingSlotsRoute()),
               icon: const Icon(Icons.local_parking),
               label: const Text('Parking Slots'),
             ),

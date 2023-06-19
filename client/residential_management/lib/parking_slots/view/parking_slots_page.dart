@@ -42,21 +42,13 @@ class ParkingSlotsPage extends StatelessWidget {
           }
 
           final floorData =
-              locations[0].locations_parking_slots_aggregate.aggregate;
-          if (floorData == null) {
+              locations[3].locations_parking_slots_aggregate.aggregate;
+          if (floorData != null) {
             return ParkingSlotFloorInfo(
-              slots: locations[0]
-                  .locations_parking_slots_aggregate
-                  .aggregate!
-                  .slots,
-              owned: locations[0]
-                  .locations_parking_slots_aggregate
-                  .aggregate!
-                  .owned,
-              rented: locations[0]
-                  .locations_parking_slots_aggregate
-                  .aggregate!
-                  .rented,
+              name: locations[3].name,
+              slots: floorData.slots,
+              owned: floorData.owned,
+              rented: floorData.rented,
             );
           }
 
