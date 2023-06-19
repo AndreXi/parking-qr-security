@@ -1,0 +1,13 @@
+query GetParkingSlotStats {
+  locations {
+    id
+    name
+    locations_parking_slots_aggregate {
+      aggregate {
+        slots: count(columns: id)
+        owned: count(columns: owner_id)
+        rented: count(columns: renter_id)
+      }
+    }
+  }
+}

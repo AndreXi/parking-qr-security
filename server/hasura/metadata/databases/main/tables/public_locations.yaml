@@ -1,3 +1,11 @@
 table:
   name: locations
   schema: public
+array_relationships:
+  - name: locations_parking_slots
+    using:
+      foreign_key_constraint_on:
+        column: location_id
+        table:
+          name: parking_slots
+          schema: public

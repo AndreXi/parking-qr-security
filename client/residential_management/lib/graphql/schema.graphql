@@ -309,6 +309,42 @@ type locations {
   has_parking_slots: Boolean!
   has_storages: Boolean!
   id: Int!
+
+  """An array relationship"""
+  locations_parking_slots(
+    """distinct select on columns"""
+    distinct_on: [parking_slots_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [parking_slots_order_by!]
+
+    """filter the rows returned"""
+    where: parking_slots_bool_exp
+  ): [parking_slots!]!
+
+  """An aggregate relationship"""
+  locations_parking_slots_aggregate(
+    """distinct select on columns"""
+    distinct_on: [parking_slots_select_column!]
+
+    """limit the number of rows returned"""
+    limit: Int
+
+    """skip the first n rows. Use only with order_by"""
+    offset: Int
+
+    """sort the rows by one or more columns"""
+    order_by: [parking_slots_order_by!]
+
+    """filter the rows returned"""
+    where: parking_slots_bool_exp
+  ): parking_slots_aggregate!
   name: String!
 }
 
@@ -353,6 +389,8 @@ input locations_bool_exp {
   has_parking_slots: Boolean_comparison_exp
   has_storages: Boolean_comparison_exp
   id: Int_comparison_exp
+  locations_parking_slots: parking_slots_bool_exp
+  locations_parking_slots_aggregate: parking_slots_aggregate_bool_exp
   name: String_comparison_exp
 }
 
@@ -381,6 +419,7 @@ input locations_insert_input {
   has_parking_slots: Boolean
   has_storages: Boolean
   id: Int
+  locations_parking_slots: parking_slots_arr_rel_insert_input
   name: String
 }
 
@@ -424,6 +463,7 @@ input locations_order_by {
   has_parking_slots: order_by
   has_storages: order_by
   id: order_by
+  locations_parking_slots_aggregate: parking_slots_aggregate_order_by
   name: order_by
 }
 
