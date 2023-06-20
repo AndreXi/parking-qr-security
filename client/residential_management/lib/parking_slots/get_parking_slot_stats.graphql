@@ -2,6 +2,7 @@ query GetParkingSlotStats {
   locations {
     id
     name
+    description
     locations_parking_slots_aggregate {
       aggregate {
         slots: count(columns: id)

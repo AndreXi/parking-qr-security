@@ -8,6 +8,18 @@
   "@ownersAppBarTitle": {
     "description": "Titulo de la pagina de Propietarios"
   },
+  "parkingSlots_parkingSlotFloorInfo_free": "Libres",
+  "@parkingSlots_parkingSlotFloorInfo_free": {
+    "description": "Puestos libres"
+  },
+  "parkingSlots_parkingSlotFloorInfo_owned": "Ocupados",
+  "@parkingSlots_parkingSlotFloorInfo_owned": {
+    "description": "Puestos ocupados"
+  },
+  "parkingSlots_parkingSlotsFloorInfo_rented": "Alquilados",
+  "@parkingSlots_parkingSlotsFloorInfo_rented": {
+    "description": "Puestos alquilados"
+  },
   "parkingSlotsAppBarTitle": "Puestos de Estacionamiento",
   "@parkingSlotsAppBarTitle": {
     "description": "Titulo de la pagina de Puestos de Estacionamiento"
