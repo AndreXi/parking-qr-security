@@ -7,9 +7,21 @@ class AppRouter extends $AppRouter {
   List<AutoRoute> get routes => [
         /// routes go here
         AutoRoute(
-          page: OwnersRoute.page,
+          page: DebugRoute.page,
           initial: true,
           path: '/',
-        )
+        ),
+        AutoRoute(
+          page: OwnersRoute.page,
+          path: '/owners',
+        ),
+        AutoRoute(
+          page: ParkingSlotsRoute.page,
+          path: '/parking-slots',
+        ),
+        AutoRoute(
+          page: ParkingSlotsEditorRoute.page,
+          path: '/parking-slots/editor',
+        ),
       ];
 }

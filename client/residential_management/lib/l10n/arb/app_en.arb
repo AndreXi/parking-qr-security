@@ -4,5 +4,28 @@
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
   },
-  "ownersAppBarTitle": "Owners"
+  "ownersAppBarTitle": "Owners",
+  "@ownersAppBarTitle": {
+    "description": "Owners title"
+  },
+  "parkingSlots_parkingSlotFloorInfo_free": "Free",
+  "@parkingSlots_parkingSlotFloorInfo_free": {
+    "description": "Free Slots"
+  },
+  "parkingSlots_parkingSlotFloorInfo_owned": "Owned",
+  "@parkingSlots_parkingSlotFloorInfo_owned": {
+    "description": "Owned Slots"
+  },
+  "parkingSlots_parkingSlotsFloorInfo_rented": "Rented",
+  "@parkingSlots_parkingSlotsFloorInfo_rented": {
+    "description": "Rented Slots"
+  },
+  "parkingSlotsAppBarTitle": "Parking Slots",
+  "@parkingSlotsAppBarTitle": {
+    "description": "Parking Slots title"
+  },
+  "parkingSlotsEditorAppBarTitle": "Parking Slots Editor",
+  "@parkingSlotsEditorAppBarTitle": {
+    "description": "Title of parking slots editor page"
+  }
 }

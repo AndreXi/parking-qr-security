@@ -25,14 +25,14 @@ array_relationships:
       foreign_key_constraint_on:
         column: renter_id
         table:
-          name: stores
+          name: storages
           schema: public
   - name: stores
     using:
       foreign_key_constraint_on:
         column: owner_id
         table:
-          name: stores
+          name: storages
           schema: public
   - name: vehicles
     using:

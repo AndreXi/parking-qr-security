@@ -1,5 +1,6 @@
 // Use DBML to define your database structure
 // Docs: https://dbml.dbdiagram.io/docs
+// https://dbdiagram.io/d/6476c7767764f72fcf24e65b
 
 // Parking data
 Table buildings {
@@ -24,10 +25,18 @@ Table owners {
   updated_at timestamp
 }
 
+Table locations {
+  id integer [pk]
+  name text
+  description text [null]
+  has_parking_slots bool
+  has_storages bool
+}
+
 Table parking_slots {
   id integer [pk]
   code text unique
-  floor integer
+  location_id integer
   owner_id uuid [null]
   renter_id uuid [null]
   qr_code uuid unique
@@ -47,10 +56,10 @@ Table vehicles {
   updated_at timestamp
 }
 
-Table stores {
+Table storages {
   id integer [pk]
   code text unique
-  location text [null]
+  location_id integer
   owner_id uuid [null]
   renter_id uuid [null]
   qr_code uuid unique
@@ -89,8 +98,12 @@ Ref: "owners"."building_id" < "buildings"."id"
 Ref: "users"."role_id" < "roles"."id"
 
 
-Ref: "stores"."owner_id" < "owners"."id"
+Ref: "storages"."owner_id" < "owners"."id"
 
-Ref: "stores"."renter_id" < "owners"."id"
+Ref: "storages"."renter_id" < "owners"."id"
 
 Ref: "parking_slots"."renter_id" < "owners"."id"
+
+Ref: "storages"."location_id" < "locations"."id"
+
+Ref: "parking_slots"."location_id" < "locations"."id"
