@@ -10,6 +10,7 @@ scripts:
   codegen: dart run build_runner build
   codegen-dev: dart run build_runner watch
   get-schema: get-graphql-schema http://localhost:8080/v1/graphql > lib/graphql/schema.graphql 
+  update-splash: dart run flutter_native_splash:create
 
 dependencies:
   auto_route: ^7.4.0
@@ -37,6 +38,7 @@ dev_dependencies:
   envied_generator: ^0.3.0+3
   ferry_generator: ^0.8.1
   flutter_launcher_icons: "^0.13.1"
+  flutter_native_splash: ^2.3.1
   flutter_test:
     sdk: flutter
   mocktail: ^0.3.0

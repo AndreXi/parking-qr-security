@@ -181,6 +181,15 @@ $ dart run flutter_launcher_icons
 
 ---
 
+### Update the Splash Screen
+To update the splash screen using [flutter_native_splash](https://pub.dev/packages/flutter_native_splash) run:
+
+```sh
+derry update-splash
+```
+
+---
+
 ### Update the Graphql Schema
 If you change the schema in Hasura is required to update the `lib/graphql/schema.graphql` file
 
