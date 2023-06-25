@@ -1,0 +1,7 @@
+query GetParkingFloors {
+  locations {
+    id
+    name
+    description
+  }
+}
