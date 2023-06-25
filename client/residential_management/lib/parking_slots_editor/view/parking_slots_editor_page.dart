@@ -14,6 +14,9 @@ class ParkingSlotsEditorPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.parkingSlotsEditorAppBarTitle),
       ),
+      body: Column(
+        children: [Text('floors')],
+      ),
     );
   }
 }
