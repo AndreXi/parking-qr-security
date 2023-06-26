@@ -4,6 +4,7 @@
   "@counterAppBarTitle": {
     "description": "Texto mostrado en la AppBar de la página del contador"
   },
+  "locationEditorOpenButton_add": "Add a new location",
   "ownersAppBarTitle": "Propietarios",
   "@ownersAppBarTitle": {
     "description": "Titulo de la pagina de Propietarios"
@@ -24,6 +25,7 @@
   "@parkingSlotsAppBarTitle": {
     "description": "Titulo de la pagina de Puestos de Estacionamiento"
   },
+  "parkingSlotsEditor_selectALocation": "Select a location",
   "parkingSlotsEditorAppBarTitle": "Editor de Puestos de Estacionamiento",
   "@parkingSlotsEditorAppBarTitle": {
     "description": "Titulo del editor de puestos de estacionamiento"

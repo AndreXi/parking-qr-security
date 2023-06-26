@@ -4,6 +4,7 @@
   "@counterAppBarTitle": {
     "description": "Text shown in the AppBar of the Counter Page"
   },
+  "locationEditorOpenButton_add": "Add a new location",
   "ownersAppBarTitle": "Owners",
   "@ownersAppBarTitle": {
     "description": "Owners title"
@@ -24,6 +25,7 @@
   "@parkingSlotsAppBarTitle": {
     "description": "Parking Slots title"
   },
+  "parkingSlotsEditor_selectALocation": "Select a location",
   "parkingSlotsEditorAppBarTitle": "Parking Slots Editor",
   "@parkingSlotsEditorAppBarTitle": {
     "description": "Title of parking slots editor page"
