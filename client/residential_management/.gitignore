@@ -133,3 +133,8 @@ __generated__/
 
 # Ignore Folder
 _folder/
+
+# Enviroment
+.env
+.env.*
+env.g.dart
