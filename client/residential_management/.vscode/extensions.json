@@ -7,6 +7,8 @@
     "felixangelov.bloc",
     "graphql.vscode-graphql-execution",
     "graphql.vscode-graphql",
-    "graphql.vscode-graphql-syntax"
+    "graphql.vscode-graphql-syntax",
+    "dotup.dart-data-class-generator",
+    "miquelddg.dart-barrel-file-generator"
   ]
 }
