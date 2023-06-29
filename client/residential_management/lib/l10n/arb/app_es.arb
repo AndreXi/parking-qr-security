@@ -5,6 +5,9 @@
     "description": "Texto mostrado en la AppBar de la página del contador"
   },
   "locationEditorOpenButton_add": "Add a new location",
+  "navigation_menuItems_owners": "Owners",
+  "navigation_menuItems_parking": "Parking",
+  "navigation_menuItems_storage": "Storage",
   "ownersAppBarTitle": "Propietarios",
   "@ownersAppBarTitle": {
     "description": "Titulo de la pagina de Propietarios"

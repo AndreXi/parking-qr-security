@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:residential_management/layout/layout.dart';
+import 'package:residential_management/navigation/navigation.dart';
 
 class LayoutResponsive extends StatelessWidget {
   const LayoutResponsive({super.key});
@@ -17,20 +18,34 @@ class LayoutResponsive extends StatelessWidget {
           return BlocBuilder<LayoutCubit, LayoutState>(
             builder: (context, state) {
               if (state == LayoutState.mobile) {
-                return Container(
-                  width: 64,
-                  height: 64,
-                  color: Colors.blue,
-                  child: Text('MObile'),
+                return Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Colors.indigo,
+                        child: Text('Mobile'),
+                      ),
+                    ),
+                    const NavigationMobile(),
+                  ],
                 );
               }
 
               if (state == LayoutState.desktop) {
-                return Container(
-                  width: 64,
-                  height: 64,
-                  color: Colors.green,
-                  child: Text('Desktop'),
+                return Row(
+                  children: [
+                    const NavigationDesktop(),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        color: Colors.green,
+                        child: Text('Desktop'),
+                      ),
+                    ),
+                  ],
                 );
               }
 

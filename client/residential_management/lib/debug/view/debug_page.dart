@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:residential_management/layout/widgets/layout_responsive.dart';
 import 'package:residential_management/router/router.gr.dart';
 
 @RoutePage()
@@ -8,6 +9,8 @@ class DebugPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(body: LayoutResponsive());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Debug menu'),
