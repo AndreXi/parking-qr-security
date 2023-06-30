@@ -10,6 +10,7 @@ class DebugPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: LayoutResponsive());
+    // return LayoutResponsive();
 
     return Scaffold(
       appBar: AppBar(

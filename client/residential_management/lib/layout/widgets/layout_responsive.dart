@@ -49,7 +49,7 @@ class LayoutResponsive extends StatelessWidget {
                 );
               }
 
-              return SizedBox();
+              return const SizedBox();
             },
           );
         },
