@@ -4,7 +4,9 @@ import 'package:residential_management/layout/layout.dart';
 import 'package:residential_management/navigation/navigation.dart';
 
 class LayoutResponsive extends StatelessWidget {
-  const LayoutResponsive({super.key});
+  const LayoutResponsive({super.key, this.child});
+
+  final Widget? child;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +23,7 @@ class LayoutResponsive extends StatelessWidget {
                 return Column(
                   children: [
                     Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        color: Colors.indigo,
-                        child: Text('Mobile'),
-                      ),
+                      child: child ?? const SizedBox(),
                     ),
                     const NavigationMobile(),
                   ],
@@ -38,12 +35,7 @@ class LayoutResponsive extends StatelessWidget {
                   children: [
                     const NavigationDesktop(),
                     Expanded(
-                      child: Container(
-                        width: double.infinity,
-                        height: double.infinity,
-                        color: Colors.green,
-                        child: Text('Desktop'),
-                      ),
+                      child: child ?? const SizedBox(),
                     ),
                   ],
                 );
