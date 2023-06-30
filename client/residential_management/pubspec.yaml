@@ -16,8 +16,10 @@ scripts:
   update-coverage:
     - flutter test --coverage --test-randomize-ordering-seed random
     - lcov --remove coverage/lcov.info  '**/__generated__/*' '*.gr.*' 'env.g.dart'  -o coverage/lcov.info
-    - genhtml coverage/lcov.info -o coverage/
     - derry update-coverage-badge
+  open-coverage-report:
+    - genhtml coverage/lcov.info -o coverage/
+    - open coverage/index.html
 
 dependencies:
   auto_route: ^7.4.0
