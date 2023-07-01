@@ -14,6 +14,7 @@ class StoragePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.storagePage_title)),
       body: LayoutResponsive(
+        index: 3,
         child: Center(
           child: Text(l10n.storagePage_title),
         ),

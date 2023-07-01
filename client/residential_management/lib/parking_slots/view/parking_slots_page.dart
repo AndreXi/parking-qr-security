@@ -52,6 +52,7 @@ class ParkingSlotsPage extends StatelessWidget {
         title: Text(l10n.parkingSlotsAppBarTitle),
       ),
       body: LayoutResponsive(
+        index: 2,
         child: Operation(
           client: client,
           operationRequest: request,

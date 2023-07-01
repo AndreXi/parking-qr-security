@@ -1,11 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:residential_management/l10n/l10n.dart';
 import 'package:residential_management/navigation/navigation.dart';
 
 class NavigationMobile extends StatelessWidget {
-  const NavigationMobile({super.key});
+  const NavigationMobile({required this.index, super.key});
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -13,20 +14,14 @@ class NavigationMobile extends StatelessWidget {
     final localizedItems = MenuItems(l10n);
     final menuItems = localizedItems.getBottomMenuDestinations();
 
-    return BlocConsumer<NavigationCubit, int>(
-      listener: (context, state) {
-        context.router.push(localizedItems.menuItems[state].pageRoute);
+    return NavigationBar(
+      destinations: menuItems,
+      onDestinationSelected: (value) {
+        if (index != value) {
+          context.router.push(localizedItems.menuItems[value].pageRoute);
+        }
       },
-      listenWhen: (previous, current) => previous != current,
-      builder: (context, state) {
-        return NavigationBar(
-          destinations: menuItems,
-          onDestinationSelected: (value) {
-            context.read<NavigationCubit>().changeIndex(value);
-          },
-          selectedIndex: state,
-        );
-      },
+      selectedIndex: index,
     );
   }
 }

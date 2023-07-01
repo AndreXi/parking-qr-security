@@ -20,7 +20,10 @@ class OwnersPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.ownersAppBarTitle),
       ),
-      body: LayoutResponsive(child: OwnersTable()),
+      body: LayoutResponsive(
+        index: 1,
+        child: OwnersTable(),
+      ),
     );
   }
 }

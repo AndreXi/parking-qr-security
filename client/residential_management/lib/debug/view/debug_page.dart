@@ -14,6 +14,7 @@ class DebugPage extends StatelessWidget {
         title: const Text('Debug menu'),
       ),
       body: LayoutResponsive(
+        index: 0,
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: Wrap(

@@ -4,8 +4,9 @@ import 'package:residential_management/layout/layout.dart';
 import 'package:residential_management/navigation/navigation.dart';
 
 class LayoutResponsive extends StatelessWidget {
-  const LayoutResponsive({super.key, this.child});
+  const LayoutResponsive({required this.index, super.key, this.child});
 
+  final int index;
   final Widget? child;
 
   @override
@@ -23,7 +24,7 @@ class LayoutResponsive extends StatelessWidget {
                   Expanded(
                     child: child ?? const SizedBox(),
                   ),
-                  const NavigationMobile(),
+                  NavigationMobile(index: index),
                 ],
               );
             }
@@ -31,7 +32,7 @@ class LayoutResponsive extends StatelessWidget {
             if (state == LayoutState.desktop) {
               return Row(
                 children: [
-                  const NavigationDesktop(),
+                  NavigationDesktop(index: index),
                   Expanded(
                     child: child ?? const SizedBox(),
                   ),
