@@ -15,7 +15,8 @@ scripts:
   update-coverage-badge: dart run covadge coverage/lcov.info .
   update-coverage:
     - flutter test --coverage --test-randomize-ordering-seed random
-    - lcov --remove coverage/lcov.info  '**/__generated__/*' '*.gr.*' 'env.g.dart'  -o coverage/lcov.info
+    - lcov --remove coverage/lcov.info  '**/__generated__/*' '*.gr.*'
+      'env.g.dart'  -o coverage/lcov.info
     - derry update-coverage-badge
   open-coverage-report:
     - genhtml coverage/lcov.info -o coverage/
@@ -39,6 +40,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   intl: ^0.18.0
+  mobile_scanner: ^3.3.0
 
 dev_dependencies:
   auto_route_generator: ^7.1.1
