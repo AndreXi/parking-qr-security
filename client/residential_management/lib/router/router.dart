@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:residential_management/l10n/l10n.dart';
 import 'package:residential_management/router/router.gr.dart';
 
 @AutoRouterConfig()
