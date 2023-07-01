@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:residential_management/l10n/l10n.dart';
 import 'package:residential_management/router/router.gr.dart';
 
 @AutoRouterConfig()
@@ -6,26 +7,31 @@ class AppRouter extends $AppRouter {
   @override
   List<AutoRoute> get routes => [
         /// routes go here
-        AutoRoute(
+        CustomRoute(
           page: DebugRoute.page,
           initial: true,
           path: '/',
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
-        AutoRoute(
+        CustomRoute(
           page: OwnersRoute.page,
           path: '/owners',
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
-        AutoRoute(
+        CustomRoute(
           page: ParkingSlotsRoute.page,
           path: '/parking-slots',
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
-        AutoRoute(
+        CustomRoute(
           page: ParkingSlotsEditorRoute.page,
           path: '/parking-slots/editor',
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
-        AutoRoute(
+        CustomRoute(
           page: StorageRoute.page,
           path: '/storage',
+          transitionsBuilder: TransitionsBuilders.noTransition,
         ),
       ];
 }
