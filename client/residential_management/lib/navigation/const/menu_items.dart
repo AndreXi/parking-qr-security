@@ -18,6 +18,11 @@ class MenuItem {
 class MenuItems {
   MenuItems(this.l10n) {
     menuItems = [
+      const MenuItem(
+        label: 'Debug',
+        icon: Icon(Icons.bug_report_rounded),
+        pageRoute: DebugRoute(),
+      ),
       MenuItem(
         label: l10n.navigation_menuItems_owners,
         icon: const Icon(Icons.person),
@@ -31,7 +36,7 @@ class MenuItems {
       MenuItem(
         label: l10n.navigation_menuItems_storage,
         icon: const Icon(Icons.save_alt_rounded),
-        pageRoute: const DebugRoute(),
+        pageRoute: const StorageRoute(),
       ),
     ];
   }

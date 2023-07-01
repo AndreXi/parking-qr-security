@@ -23,5 +23,9 @@ class AppRouter extends $AppRouter {
           page: ParkingSlotsEditorRoute.page,
           path: '/parking-slots/editor',
         ),
+        AutoRoute(
+          page: StorageRoute.page,
+          path: '/storage',
+        ),
       ];
 }

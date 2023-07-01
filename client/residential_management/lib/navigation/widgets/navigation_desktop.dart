@@ -13,14 +13,17 @@ class NavigationDesktop extends StatelessWidget {
     final localizedItems = MenuItems(l10n);
     final menuItems = localizedItems.getRailMenuDestinations();
 
-    return BlocBuilder<NavigationCubit, int>(
+    return BlocConsumer<NavigationCubit, int>(
+      listener: (context, state) {
+        context.router.push(localizedItems.menuItems[state].pageRoute);
+      },
+      listenWhen: (previous, current) => previous != current,
       builder: (context, state) {
         return NavigationRail(
           labelType: NavigationRailLabelType.selected,
           destinations: menuItems,
           onDestinationSelected: (value) {
             context.read<NavigationCubit>().changeIndex(value);
-            context.router.push(localizedItems.menuItems[value].pageRoute);
           },
           selectedIndex: state,
         );

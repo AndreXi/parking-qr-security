@@ -32,5 +32,6 @@
   "parkingSlotsEditorAppBarTitle": "Parking Slots Editor",
   "@parkingSlotsEditorAppBarTitle": {
     "description": "Title of parking slots editor page"
-  }
+  },
+  "storagePage_title": "Storage"
 }

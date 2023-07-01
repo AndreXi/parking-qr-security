@@ -13,13 +13,16 @@ class NavigationMobile extends StatelessWidget {
     final localizedItems = MenuItems(l10n);
     final menuItems = localizedItems.getBottomMenuDestinations();
 
-    return BlocBuilder<NavigationCubit, int>(
+    return BlocConsumer<NavigationCubit, int>(
+      listener: (context, state) {
+        context.router.push(localizedItems.menuItems[state].pageRoute);
+      },
+      listenWhen: (previous, current) => previous != current,
       builder: (context, state) {
         return NavigationBar(
           destinations: menuItems,
           onDestinationSelected: (value) {
             context.read<NavigationCubit>().changeIndex(value);
-            context.router.push(localizedItems.menuItems[value].pageRoute);
           },
           selectedIndex: state,
         );
