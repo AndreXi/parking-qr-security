@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:residential_management/l10n/l10n.dart';
 import 'package:residential_management/layout/layout.dart';
-import 'package:residential_management/navigation/navigation.dart';
 import 'package:residential_management/router/router.dart';
 
 class App extends StatelessWidget {
@@ -12,15 +11,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => NavigationCubit(),
-        ),
-        BlocProvider(
-          create: (context) => LayoutCubit(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => LayoutCubit(),
       child: MaterialApp.router(
         theme: ThemeData(
           appBarTheme: const AppBarTheme(color: Colors.transparent),
