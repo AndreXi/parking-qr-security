@@ -4,6 +4,7 @@ import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:residential_management/l10n/l10n.dart';
+import 'package:residential_management/layout/layout.dart';
 import 'package:residential_management/owners/__generated__/owners.req.gql.dart';
 import 'package:residential_management/owners/widgets/owner_row/owner_card.dart';
 
@@ -19,7 +20,10 @@ class OwnersPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.ownersAppBarTitle),
       ),
-      body: OwnersTable(),
+      body: LayoutResponsive(
+        index: 1,
+        child: OwnersTable(),
+      ),
     );
   }
 }

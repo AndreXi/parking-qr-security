@@ -4,6 +4,7 @@ import 'package:ferry_flutter/ferry_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:residential_management/l10n/l10n.dart';
+import 'package:residential_management/layout/layout.dart';
 import 'package:residential_management/parking_slots/__generated__/get_parking_slot_stats.data.gql.dart';
 import 'package:residential_management/parking_slots/__generated__/get_parking_slot_stats.req.gql.dart';
 import 'package:residential_management/parking_slots/widgets/parking_slot_floor_info.dart';
@@ -50,32 +51,35 @@ class ParkingSlotsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.parkingSlotsAppBarTitle),
       ),
-      body: Operation(
-        client: client,
-        operationRequest: request,
-        builder: (context, response, error) {
-          if (response == null || response.hasErrors) {
-            return const ParkingSlotsGetStatsError();
-          }
+      body: LayoutResponsive(
+        index: 2,
+        child: Operation(
+          client: client,
+          operationRequest: request,
+          builder: (context, response, error) {
+            if (response == null || response.hasErrors) {
+              return const ParkingSlotsGetStatsError();
+            }
 
-          if (response.loading) {
-            return const Center(child: CircularProgressIndicator());
-          }
+            if (response.loading) {
+              return const Center(child: CircularProgressIndicator());
+            }
 
-          final data = response.data;
-          if (data == null) {
-            return const ParkingSlotsGetStatsError();
-          }
+            final data = response.data;
+            if (data == null) {
+              return const ParkingSlotsGetStatsError();
+            }
 
-          return SingleChildScrollView(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Wrap(
-                children: _getParkingSlotFloors(data),
+            return SingleChildScrollView(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Wrap(
+                  children: _getParkingSlotFloors(data),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

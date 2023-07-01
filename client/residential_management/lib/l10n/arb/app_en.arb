@@ -5,6 +5,9 @@
     "description": "Text shown in the AppBar of the Counter Page"
   },
   "locationEditorOpenButton_add": "Add a new location",
+  "navigation_menuItems_owners": "Owners",
+  "navigation_menuItems_parking": "Parking",
+  "navigation_menuItems_storage": "Storage",
   "ownersAppBarTitle": "Owners",
   "@ownersAppBarTitle": {
     "description": "Owners title"
@@ -29,5 +32,6 @@
   "parkingSlotsEditorAppBarTitle": "Parking Slots Editor",
   "@parkingSlotsEditorAppBarTitle": {
     "description": "Title of parking slots editor page"
-  }
+  },
+  "storagePage_title": "Storage"
 }
