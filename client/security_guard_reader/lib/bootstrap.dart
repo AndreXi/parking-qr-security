@@ -2,7 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get_it/get_it.dart';
+import 'package:security_guard_reader/env/env.dart';
+import 'package:security_guard_reader/graphql/graphql.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -28,6 +32,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
+  const apiUrl = Env.apiUrl;
+  GetIt.I.registerSingleton<Client>(await initGraphqlClient(apiUrl));
 
   runApp(await builder());
 }
