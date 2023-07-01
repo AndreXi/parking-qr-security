@@ -29,7 +29,7 @@ class CounterView extends StatelessWidget {
 
     final userR = GUsersReq();
 
-    initGraphqlClient(Env.API_URL).then(
+    initGraphqlClient(Env.apiUrl).then(
       (client) => client.request(userR).listen((event) {
         debugPrint(event.data?.owners.first.first_name);
       }),

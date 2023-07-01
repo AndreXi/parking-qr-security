@@ -32,7 +32,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   Bloc.observer = const AppBlocObserver();
 
   // Add cross-flavor configuration here
-  const apiUrl = Env.API_URL;
+  const apiUrl = Env.apiUrl;
   GetIt.I.registerSingleton<Client>(await initGraphqlClient(apiUrl));
 
   runApp(await builder());
