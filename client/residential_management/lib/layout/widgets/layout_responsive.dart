@@ -10,42 +10,39 @@ class LayoutResponsive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LayoutCubit(),
-      child: Builder(
-        builder: (context) {
-          final screenWidth = MediaQuery.of(context).size.width;
-          context.read<LayoutCubit>().determineLayoutByWidth(screenWidth);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = constraints.maxWidth;
+        context.read<LayoutCubit>().determineLayoutByWidth(screenWidth);
 
-          return BlocBuilder<LayoutCubit, LayoutState>(
-            builder: (context, state) {
-              if (state == LayoutState.mobile) {
-                return Column(
-                  children: [
-                    Expanded(
-                      child: child ?? const SizedBox(),
-                    ),
-                    const NavigationMobile(),
-                  ],
-                );
-              }
+        return BlocBuilder<LayoutCubit, LayoutState>(
+          builder: (context, state) {
+            if (state == LayoutState.mobile) {
+              return Column(
+                children: [
+                  Expanded(
+                    child: child ?? const SizedBox(),
+                  ),
+                  const NavigationMobile(),
+                ],
+              );
+            }
 
-              if (state == LayoutState.desktop) {
-                return Row(
-                  children: [
-                    const NavigationDesktop(),
-                    Expanded(
-                      child: child ?? const SizedBox(),
-                    ),
-                  ],
-                );
-              }
+            if (state == LayoutState.desktop) {
+              return Row(
+                children: [
+                  const NavigationDesktop(),
+                  Expanded(
+                    child: child ?? const SizedBox(),
+                  ),
+                ],
+              );
+            }
 
-              return const SizedBox();
-            },
-          );
-        },
-      ),
+            return const SizedBox();
+          },
+        );
+      },
     );
   }
 }
