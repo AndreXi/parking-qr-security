@@ -50,16 +50,22 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: MobileScanner(
-        // fit: BoxFit.contain,
-        controller: cameraController,
-        onDetect: (capture) {
-          final List<Barcode> barcodes = capture.barcodes;
-          final Uint8List? image = capture.image;
-          for (final barcode in barcodes) {
-            debugPrint('Barcode found! ${barcode.rawValue}');
-          }
-        },
+      body: SizedBox(
+        height: 200,
+        width: 200,
+        child: CustomPaint(
+          child: MobileScanner(
+            // fit: BoxFit.contain,
+            controller: cameraController,
+            onDetect: (capture) {
+              final List<Barcode> barcodes = capture.barcodes;
+              final Uint8List? image = capture.image;
+              for (final barcode in barcodes) {
+                debugPrint('Barcode found! ${barcode.rawValue}');
+              }
+            },
+          ),
+        ),
       ),
     );
   }
