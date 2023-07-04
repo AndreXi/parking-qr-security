@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue.shade800,
       appBar: AppBar(
         title: const Text('Mobile Scanner'),
         actions: [
@@ -55,11 +56,10 @@ class HomePage extends StatelessWidget {
         child: CustomPaint(
           painter: ReaderBorderPainter(
             borderWidth: 16,
-            borderColor: Colors.green,
-            borderRadius: BorderRadius.circular(20),
+            borderColor: Colors.white,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(32),
+            padding: const EdgeInsets.all(24),
             child: SizedBox(
               height: 200,
               width: 200,

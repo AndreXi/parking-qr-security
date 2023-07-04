@@ -1,53 +1,46 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ReaderBorderPainter extends CustomPainter {
   ReaderBorderPainter({
     required this.borderWidth,
     required this.borderColor,
-    required this.borderRadius,
   });
 
   final double borderWidth;
   final Color borderColor;
-  final BorderRadius borderRadius;
 
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color = borderColor
       ..strokeWidth = borderWidth
+      ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
-    final paint2 = Paint()
-      ..color = Colors.white
-      ..strokeWidth = borderWidth - 8
-      ..style = PaintingStyle.stroke;
+    const percent = 1 / 3;
 
-    final rect = Rect.fromLTWH(
-      borderWidth / 2,
-      borderWidth / 2,
-      size.width - borderWidth,
-      size.height - borderWidth,
-    );
+    // Draw the top left
+    final path = Path()
+      ..lineTo(size.width * percent, 0)
+      ..moveTo(0, 0)
+      ..lineTo(0, size.height * percent);
 
-    final rect2 = Rect.fromLTWH(
-      borderWidth / 2,
-      borderWidth / 2,
-      size.width - borderWidth,
-      size.height - borderWidth,
-    );
+    // Draw the top left corner
+    canvas.drawPath(path, paint);
 
-    final path = Path()..addRRect(borderRadius.toRRect(rect));
-    final path2 = Path()..addRRect(borderRadius.toRRect(rect2));
-
-    canvas
-      ..drawPath(path, paint)
-      ..drawPath(path2, paint2);
+    // Draw the other three corners clockwise
+    for (var i = 0; i < 3; i++) {
+      canvas
+        ..rotate(pi / 2)
+        ..translate(0, -size.height)
+        ..drawPath(path, paint);
+    }
   }
 
   @override
   bool shouldRepaint(ReaderBorderPainter oldDelegate) =>
       borderWidth != oldDelegate.borderWidth ||
-      borderColor != oldDelegate.borderColor ||
-      borderRadius != oldDelegate.borderRadius;
+      borderColor != oldDelegate.borderColor;
 }
