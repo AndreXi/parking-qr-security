@@ -141,7 +141,7 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
     }
 }
 ```com.andrexi.security_guard_reader
-   com.andrexi.security-guard-reader
+   com.andrexi.security_guard_reader
 
 `app_es.arb`
 

@@ -13,20 +13,22 @@ class ParkingSlotsEditorPage extends StatelessWidget {
     final l10n = context.l10n;
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(l10n.parkingSlotsEditorAppBarTitle),
-        ),
-        body: Form(
-            child: Column(
+      appBar: AppBar(
+        title: Text(l10n.parkingSlotsEditorAppBarTitle),
+      ),
+      body: Form(
+        child: Column(
           children: [
             Row(
               children: [
                 Text(l10n.parkingSlotsEditor_selectALocation),
-                LocationEditorOpenButton(),
+                const LocationEditorOpenButton(),
               ],
             ),
             ParkingFloorSelector()
           ],
-        )));
+        ),
+      ),
+    );
   }
 }

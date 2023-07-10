@@ -125,5 +125,16 @@ app.*.map.json
 !.idea/dictionaries/
 !.idea/runConfigurations/
 
+# Ferry GraphQL generated folders
+__generated__/
+
+# Gererated by Router
+*.gr.*
+
 # Ignore Folder
-_folder
+_folder/
+
+# Enviroment
+.env
+.env.*
+env.g.dart
