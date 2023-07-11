@@ -3,11 +3,11 @@ import 'dart:typed_data';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
-import 'package:security_guard_reader/home/view/widgets/reader_border_painter.dart';
+import 'package:security_guard_reader/reader/widgets/reader_border_painter.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+class ReaderPage extends StatelessWidget {
+  ReaderPage({super.key});
 
   MobileScannerController cameraController = MobileScannerController();
 
